@@ -1,3 +1,4 @@
+{% load basetags %}
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -5,12 +6,15 @@
 <title>{% block title %}ManPower{% endblock %}</title>
 
 <link href="{{ STATIC_URL }}/css/main.css" rel="stylesheet" type="text/css"/>
+<link href="{{ STATIC_URL }}/css/treeMenu.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="{{ STATIC_URL }}/scripts/jquery.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}/scripts/treeMenu.js"></script>
 </head>
 
 <body>
 <div id="mainPan">
   <div id="topPan">
-  	<a href="/"><img src="{{ STATIC_URL }}/images/logo.gif" alt="Aquatic" width="136" height="31" border="0" class="logo" title="Aquatic"/></a> 
+  	<a href="/"><img src="{{ STATIC_URL }}/images/logo.gif" alt="ManPower" width="136" height="31" border="0" class="logo" title="ManPower"/></a> 
 	<p class="caption">Хөдөлмөр зуучлалын үндсэний аян</p>
 	<div id="topcontactPan">
 
@@ -33,16 +37,12 @@
   </div>
   <div id="bodyPan">
   	<div id="leftPan">
-		<h2>Solutions</h2>
-		<ul>
-			<li><a href="#"><span>Lorem ipsum</span></a></li>
-			<li><a href="#"><span>Dolor sit </span></a></li>
-			<li><a href="#"><span>amet, Con</span></a></li>
-			<li><a href="#"><span>sectetuer</span></a></li>
-			<li><a href="#"><span>Adipiscing</span></a></li>
-			<li><a href="#"><span>elit. Praesent</span></a></li>
-			<li><a href="#"><span>adipiScing</span></a></li>
-		</ul>
+  		<h2>Ажлын байрууд</h2>
+  		<div id="treeMenu">
+		{% job_category_menu %}
+		
+		</div>
+		<!-- 
 		<h2>Solutions</h2>
 		<ul>
 			<li><a href="#">Magna vel</a></li>
@@ -52,6 +52,7 @@
 			<li><a href="#">Hendreritamc</a></li>
 			<li><a href="#">Tempor, pur</a></li>
 		</ul>
+		 -->
 	</div>
     <div id="rightPan">
         {% block body %}

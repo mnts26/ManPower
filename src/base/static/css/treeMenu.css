@@ -1,0 +1,109 @@
+#treeMenu {
+	font: normal 14px 'Segoe UI', Helvetica, Arial, sans-serif;
+	width: 214px;
+	float: left;
+}
+
+#treeMenu h2 {
+	font: bold 20px 'Segoe UI', Helvetica, Arial, sans-serif;
+	color: #454545;
+	margin-bottom: 12px;
+}
+
+#treeMenu ul {
+	list-style: none;
+	list-style-type: none;
+	display: block;
+	-webkit-margin-before: 1em;
+	-webkit-margin-after: 1em;
+	-webkit-margin-start: 0px;
+	-webkit-margin-end: 0px;
+	-webkit-padding-start: 40px;
+	padding: 0px;
+	margin: 0px;
+}
+
+#treeMenu ul li {
+	overflow: hidden;
+	background: #f5f5f5 url(../images/treeTabBg.gif) repeat-x 0 0;
+	border: solid 1px #fff;
+	margin: 4px 0;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+}
+
+#treeMenu ul li span {
+	display: inline-block;
+	/*float: right;*/
+	width: 30px;
+	height: 30px;
+	background: url(../images/treeSplit.png) no-repeat 100% 0;
+	cursor: pointer;
+	margin: 0px;
+	padding: 0px;
+}
+
+#treeMenu ul li a {
+	color: #4d5f6b;
+	font-size: 13px;
+	padding: 5px 10px;
+	display: inline-block;
+	text-decoration: none;
+	width: 164px;
+	float: left;
+}
+
+#treeMenu ul li span.opened {
+	background-position: 100% -61px;
+}
+
+#treeMenu ul li div {
+	clear: both;
+	height: auto;
+}
+
+#treeMenu ul li li {
+	background: none;
+	border: 0;
+	margin: 0;
+	padding-left: 10px;
+	border-bottom: solid 1px #fff;
+	border-top: solid 1px #eee;
+	clear: both;
+}
+
+#treeMenu ul li li a {
+	color: #626262;
+	font-size: 11px;
+	padding: 5px 0;
+	float: left;
+	width: auto;
+}
+
+#treeMenu ul li li a:hover {
+	text-decoration: underline;
+	color: #333;
+}
+
+#treeMenu ul li li span {
+	float: left;
+	display: inline;
+	width: 15px;
+	height: 20px;
+	background-position: -10px -263px;
+	cursor: default;
+}
+
+#treeMenu ul li li span.closed {
+	background-position: -10px -131px;
+	cursor: pointer;
+}
+
+#treeMenu ul li li span.closed.opened {
+	background-position: -7px -197px;
+}
+
+#treeMenu ul li li li {
+	border: 0;
+}

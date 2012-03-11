@@ -13,19 +13,19 @@ div,p,ul,h2,h3,h4,h5,img {
 }
 
 ul {
-	list-style-type: none
+	list-style-type: none;
 }
 
 /*----MAIN PANEL----*/
 #mainPan {
-	width: 778px;
+	width: 878px;
 	position: relative;
 	margin: 0 auto;
 }
 
 /*----TOP PANEL----*/
 #topPan {
-	width: 778px;
+	width: 878px;
 	height: 65px;
 	background: url(..//images/topbg.jpg) 0 0 no-repeat #fff;
 	color: #828282;
@@ -34,20 +34,20 @@ ul {
 }
 
 #topPan img.logo {
-	width: 136px;
+	width: 156px;
 	height: 31px;
 	position: absolute;
 	top: 12px;
-	left: 235px;
+	left: 335px;
 }
 
 #topPan p.caption {
-	width: 200px;
+	width: 300px;
 	background: #fff;
 	color: #828282;
 	position: absolute;
 	top: 43px;
-	left: 235px;
+	left: 335px;
 }
 
 #topcontactPan {
@@ -101,7 +101,7 @@ ul {
 
 /*----/TOP PANEL----*/ /*----HEADER PANEL----*/
 #headerPan {
-	width: 686px;
+	width: 786px;
 	height: 153px;
 	background: url(../images/header.jpg) 0 0 no-repeat;
 	position: relative;
@@ -160,7 +160,7 @@ ul {
 	height: 45px;
 	position: absolute;
 	top: 118px;
-	left: 250px;
+	left: 350px;
 }
 
 #headerPan ul.botton li {
@@ -209,7 +209,7 @@ ul {
 
 /*----/HEADER PANEL----*/ /*----BODY PANEL----*/
 #bodyPan {
-	width: 686px;
+	width: 786px;
 	background: url(../images/bodybg.gif) 0 0 no-repeat;
 	position: relative;
 	margin: 0 auto;
@@ -218,12 +218,12 @@ ul {
 
 /*----Body Left Panel----*/
 #leftPan {
-	width: 114px;
+	width: 214px;
 	float: left;
 }
 
 #leftPan h2 {
-	width: 114px;
+	width: 214px;
 	height: 34px;
 	background: #fff;
 	color: #5F7A77;
@@ -232,38 +232,20 @@ ul {
 }
 
 #leftPan ul {
-	width: 114px;
+	width: 214px;
 }
 
 #leftPan ul li {
-	width: 114px;
-	height: 24px;
+	width: 214px;
+	/*height: 24px;*/
 }
 
-#leftPan ul li a {
-	width: 102px;
-	height: 24px;
-	display: block;
-	background: url(../images/bullet2-normal.gif) 0 10px no-repeat #fff;
-	color: #5F7A77;
-	text-decoration: none;
-	line-height: 24px;
-	padding: 0 0 0 12px;
-}
 
-#leftPan ul li a:hover {
-	background: url(../images/bullet2-hover.gif) 0 10px no-repeat #fff;
-	color: #5F7A77;
-	text-decoration: none;
-}
-
-#leftPan ul li span {
-	text-decoration: underline;
-}
 
 /*----/Body Left Panel----*/ /*----Body Right Panel----*/
 #rightPan {
 	width: 511px;
+	min-height: 220px;
 	float: left;
 	border-left: 1px solid #C8E8E2;
 	margin: 28px 0 0;

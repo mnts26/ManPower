@@ -17,9 +17,9 @@ class PartnerAdmin(admin.ModelAdmin):
 admin.site.register(Partner, PartnerAdmin)
 
 class JobCategoryAdmin(admin.ModelAdmin):
-    fieldsets = ((u'Ерөнхий', {'fields':('name',)}),
+    fieldsets = ((u'Ерөнхий', {'fields':('name','parent')}),
                  (u'Тайлбар', {'fields':('description',)}),)
-    list_display = ('name','description')
-    search_fields = ('name',)
+    list_display = ('name','parent','description')
+    search_fields = ('name','parent')
 admin.site.register(JobCategory, JobCategoryAdmin)
 

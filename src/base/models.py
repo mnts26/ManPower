@@ -34,7 +34,35 @@ class Partner(models.Model):
 
 class JobCategory(models.Model):
     name = models.CharField(u'Нэр', max_length=128)
+    parent = models.ForeignKey('self', verbose_name=u'Эцэг ангилал', 
+                related_name='child_set', blank=True, null=True)
     description = models.TextField(u'Тайлбар', blank=True, null=True)
+    
+    def menu_html(self, parent=True):
+        html = u''
+        if parent:
+            html += u'<a href="javascript:void(0)" class="parent">%s</a>\n' % self.name
+            html += u'<span class="closed"></span>\n'
+            html += u'<div style="display: block">\n'
+            html += u'<ul>\n'
+        else :
+            html += u'<li>\n'
+            html += u'<span class="closed"></span>\n'
+            html += u'<a href="/base/joblist/%s">%s</a>\n' % (self.id, self.name)
+            html += u'<div style="display: block">\n'
+            html += u'<ul>\n'
+        for child in self.child_set.all() :
+            html += child.menu_html(parent=False)
+        html += u'</ul>\n'
+        html += u'</div>'
+        return html
+    
+    def get_all_children(self):
+        r = []
+        r.append(self)
+        for c in JobCategory.objects.filter(parent=self):
+          r.append(c.get_children())
+        return r
     
     class Meta:
         verbose_name_plural = u"Ажлын ангилалууд"
