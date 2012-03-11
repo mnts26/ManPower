@@ -120,7 +120,8 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.admindocs',
     'django_extensions',
-    'base'
+    'base',
+    'common'
     # Uncomment the next line to enable the admin:
     # 'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
@@ -149,3 +150,5 @@ LOGGING = {
         },
     }
 }
+
+FIXTURE_DIRS = (os.path.join(os.path.dirname(__file__), 'base/fixtures'),)
