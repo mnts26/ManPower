@@ -2,13 +2,14 @@
 from django.db import models
 from django.contrib.auth.models import User 
 from common.models import *
+import time
 
 # Create your models here.
 class PartnerCategory(models.Model):
     name = models.CharField(u'Нэр', max_length=64)
     parent = models.ForeignKey('self', verbose_name=u'Эцэг ангилал', 
                 related_name='child_set', blank=True, null=True)
-    description = models.TextField(u'Тайлбар')
+    description = models.TextField(u'Тайлбар', blank=True, null=True)
     
     class Meta:
         verbose_name_plural = u"Харилцагчийн ангилалууд"
@@ -18,12 +19,13 @@ class PartnerCategory(models.Model):
         return self.name
 
 class Partner(models.Model):
+    
     name = models.CharField(u'Нэр', max_length=128)
     description = models.TextField(u'Тайлбар', blank=True, null=True)
     category_id = models.ForeignKey('PartnerCategory', verbose_name=u'Ангилал',
                 related_name='partner_set')
     started_date = models.DateField(u'Байгуулагдсан он', blank=True, null=True)
-    user = models.ForeignKey(User, verbose_name=u'Хандах эрх')
+    user = models.ForeignKey(User, verbose_name=u'Хандах эрх', blank=True, null=True)
     
     class Meta:
         verbose_name_plural = u"Харилцагчид"
@@ -41,7 +43,7 @@ class JobCategory(models.Model):
     def menu_html(self, parent=True):
         html = u''
         if parent:
-            html += u'<a href="javascript:void(0)" class="parent">%s</a>\n' % self.name
+            html += u'<a href="/base/joblist/%s" class="parent">%s</a>\n' % (self.id, self.name)
             html += u'<span class="closed"></span>\n'
             html += u'<div style="display: block">\n'
             html += u'<ul>\n'
@@ -61,7 +63,7 @@ class JobCategory(models.Model):
         r = []
         r.append(self)
         for c in JobCategory.objects.filter(parent=self):
-          r.append(c.get_children())
+           r.extend(c.get_all_children())
         return r
     
     class Meta:
@@ -84,12 +86,14 @@ class JobLevel(models.Model):
 
 class JobOrder(models.Model):
     category = models.ForeignKey('JobCategory', verbose_name=u'Ангилал', related_name='joborder_set')
+    partner = models.ForeignKey('Partner', verbose_name=u'Байгууллага', related_name='joborder_set')
     level = models.ForeignKey('JobLevel', verbose_name=u'Зэрэглэл', related_name='joborder_set')
     name = models.CharField(u'Нэр', max_length=128)
     description = models.TextField(u'Тайлбар', blank=True, null=True)
     requirement = models.TextField(u'Тавигдах шаардлага')
     deadline = models.DateField(u'Эцсийн огноо', help_text=u'Хэрэв эцсийн огноо оруулахгүй бол уг ажлын байр байнга нээлттэй байх болно.')
     active = models.BooleanField(u'Идэвхитэй', help_text=u'Уг ажлын байр ажил горилогчид харагдах эсэх')
+    create_date = models.DateField(u'Үүсгэсэн огноо', auto_now_add=True)
     
     class Meta:
         verbose_name_plural = u"Ажлын байрууд"

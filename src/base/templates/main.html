@@ -7,8 +7,12 @@
 
 <link href="{{ STATIC_URL }}/css/main.css" rel="stylesheet" type="text/css"/>
 <link href="{{ STATIC_URL }}/css/treeMenu.css" rel="stylesheet" type="text/css"/>
+{% block style %}
+{% endblock %}
 <script type="text/javascript" src="{{ STATIC_URL }}/scripts/jquery.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}/scripts/treeMenu.js"></script>
+{% block script %}
+{% endblock %}
 </head>
 
 <body>

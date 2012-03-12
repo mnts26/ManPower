@@ -1,0 +1,20 @@
+{% extends "main.html" %}
+
+{% block title %}{{ partner.name }}{% endblock %}
+
+{% block style %}
+<link href="{{ STATIC_URL }}/css/joblist.css" rel="stylesheet" type="text/css"/>
+{% endblock %}
+
+{% block body %}
+<table class="box">
+    <tr><td class="label">Байгууллага:</td><td><h3>{{ partner.name }}</h3></td></tr>
+    <tr><td class="label">Ангилал:</td><td><h5>{{ order.category.name }}</h5></td></tr>
+    <tr><td class="label">Зэрэглэл:</td><td>{{ order.level.name }}</td></tr>
+    <tr><td class="label">Ажлын байр:</td><td><h5>{{ order.name }}</h5></td></tr>
+    <tr><td class="label">Тайлбар:</td><td>{{ order.description|safe }}</td></tr>
+    <tr><td class="label">Тавигдах шаардлага:</td><td>{{ order.requirement|safe }}</td></tr>
+    <tr><td class="label">Анкет авах эцсийн хугацаа:</td><td>{{ order.deadline|date:"Y-m-d" }}</td></tr>
+</table>
+
+{% endblock %}

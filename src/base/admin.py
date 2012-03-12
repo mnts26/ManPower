@@ -18,8 +18,22 @@ admin.site.register(Partner, PartnerAdmin)
 
 class JobCategoryAdmin(admin.ModelAdmin):
     fieldsets = ((u'Ерөнхий', {'fields':('name','parent')}),
-                 (u'Тайлбар', {'fields':('description',)}),)
+                 (u'Тайлбар', {'fields':('description',)}))
     list_display = ('name','parent','description')
     search_fields = ('name','parent')
 admin.site.register(JobCategory, JobCategoryAdmin)
+
+class JobOrderAdmin(admin.ModelAdmin):
+    fieldsets = ((u'Ерөнхий мэдээлэл', {'fields':('category','partner','level','name')}),
+                 (u'Бусад мэдээлэл', {'fields':('description','requirement','deadline','active')}))
+    list_display = ('category','name','partner','level','deadline','active')
+    search_fields = ('name','category','partner')
+admin.site.register(JobOrder, JobOrderAdmin)
+
+class JobLevelAdmin(admin.ModelAdmin):
+    fieldsets = ((u'Ерөнхий', {'fields':('name',)}),
+                 (u'Тайлбар', {'fields':('description',)}))
+    list_display = ('name','description')
+    search_fields = ('name',)
+admin.site.register(JobLevel, JobLevelAdmin)
 
