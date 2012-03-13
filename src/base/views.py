@@ -22,7 +22,6 @@ def joblist(request, categ_id):
                               context_instance=RequestContext(request))
 
 def jobdetail(request, order_id):
-    
     order = JobOrder.objects.get(pk=order_id)
     partner = order.partner
     return render_to_response('jobdetail.html', locals(),
