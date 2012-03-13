@@ -19,7 +19,6 @@ class PartnerCategory(models.Model):
         return self.name
 
 class Partner(models.Model):
-    
     name = models.CharField(u'Нэр', max_length=128)
     description = models.TextField(u'Тайлбар', blank=True, null=True)
     category_id = models.ForeignKey('PartnerCategory', verbose_name=u'Ангилал',

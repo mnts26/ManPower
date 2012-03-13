@@ -5,12 +5,42 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.template import RequestContext
 from base.models import *
 from common.models import *
+from django.shortcuts import render_to_response
+from django.contrib.auth import authenticate
+from django.contrib.auth import login as auth_login
+from django.contrib.auth import logout
+from django.contrib.auth.decorators import login_required
+
+
 
 def index(request):
     
     return render_to_response('index.html', locals(), 
                               context_instance=RequestContext(request))
-
+    
+def login(request):
+    if request.method=='POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(username=username, password=password)
+        if user is not None:
+            if user.is_active:
+                auth_login(request, user)
+                state = "You're successfully logged in!"
+            else:
+                state = "Your account is not active, please contact the site admin."
+        else:
+            state = "Your username and/or password were incorrect."
+    return render_to_response('index.html', locals(), 
+                              context_instance=RequestContext(request))
+@login_required
+def logoutview(request):
+    if request.user.is_authenticated():
+        logout(request)
+        return HttpResponseRedirect('/')
+    return render_to_response('index.html', locals(), 
+                              context_instance=RequestContext(request))
+        
 def joblist(request, categ_id):
     
     categ = JobCategory.objects.get(id=categ_id)

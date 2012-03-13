@@ -15,6 +15,9 @@ urlpatterns = patterns('',
     # Uncomment the next line to enable the admin:
     
     url(r'^$', 'base.views.index'),
+    url(r'^login$', 'base.views.login'),
+    url(r'^logout$', 'base.views.logoutview'),
     url(r'^joblist/(?P<categ_id>.*)$', 'base.views.joblist'),
     url(r'^jobdetail/(?P<order_id>.*)$', 'base.views.jobdetail')
+    
 )
