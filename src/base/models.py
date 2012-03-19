@@ -43,12 +43,12 @@ class JobCategory(models.Model):
         html = u''
         if parent:
             html += u'<a href="/base/joblist/%s" class="parent">%s</a>\n' % (self.id, self.name)
-            html += u'<span class="closed"></span>\n'
+            html += u'<span class="closedmenu"></span>\n'
             html += u'<div style="display: block">\n'
             html += u'<ul>\n'
         else :
             html += u'<li>\n'
-            html += u'<span class="closed"></span>\n'
+            html += u'<span class="closedmenu"></span>\n'
             html += u'<a href="/base/joblist/%s">%s</a>\n' % (self.id, self.name)
             html += u'<div style="display: block">\n'
             html += u'<ul>\n'

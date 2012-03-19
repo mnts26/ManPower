@@ -54,7 +54,7 @@
 	float: left;
 }
 
-#treeMenu ul li span.opened {
+#treeMenu ul li span.openedmenu {
 	background-position: 100% -61px;
 }
 
@@ -95,12 +95,12 @@
 	cursor: default;
 }
 
-#treeMenu ul li li span.closed {
+#treeMenu ul li li span.closedmenu {
 	background-position: -10px -131px;
 	cursor: pointer;
 }
 
-#treeMenu ul li li span.closed.opened {
+#treeMenu ul li li span.closedmenu.openedmenu {
 	background-position: -7px -197px;
 }
 
