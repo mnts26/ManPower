@@ -1,0 +1,133 @@
+.extTextInput,
+.extTextArea {
+	background: #F3F3F3 url(../images/textinput.png) repeat-x scroll left top;
+	border-color: #C6C6C6 #C6C6C6 #E3E3E3;
+	border-style: solid;
+	border-width: 1px;
+	color: #666666;
+	font-size: 12pt;
+	margin: 3px;
+	padding: 3px;
+	/*width: 70%;*/
+}
+
+.extTextArea {
+	width: 90%;
+}
+
+.extNumberExampleLabel {
+	color: #999999;
+	font-weight: normal;
+	font-size: 12pt;
+}
+
+.extFormTable {
+	width: 100%;
+	padding: 8px;
+	border-collapse: collapse;
+}
+.extFormTable tr {
+	border-bottom: 1px solid #bbbbbb;
+}
+
+.extFormTable tr td.extFormTableTitle {
+	font-size: 13px;
+	font-weight: bold;
+	color: #226622;
+	border-color: #99BB77 #99BB77 #228822;
+	border-style: solid;
+	border-width: 1px;
+	background: #BBDD99;
+	text-align: center;
+	padding: 7px 0 3px 0;
+}
+
+.extFormTable tr td.extFormTableTitleEnd {
+	color: #226622;
+	border-top: 1px solid #228822;
+	text-align: center;
+	padding: 20px 0 3px 0;
+}
+
+.extFormTable tr td {
+	width: 70%;
+	font-size: 12px;
+	font-weight: normal;
+	font-style: italic;
+	color: #775555;
+}
+.extFormTable tr td img {
+	vertical-align: middle;
+	
+}
+
+.extFormTable tr td.label {
+	width: 30%;
+	text-align: right;
+	padding-right: 10px;
+	vertical-align: top;
+	padding-top: 6px;
+}
+.extFormTable tr td.label label {
+	font-size: 13px;
+	text-transform: uppercase;
+	color: #555555;
+	font-weight: bold;
+	white-space: nowrap;
+}
+
+.extFormTable tr.error input,
+.extFormTable tr.error textarea {
+	background: #FFDDFF url(/extmedia/images/textinput_error.png) repeat-x scroll left top;
+	border-color: #BB9999 #BB9999 #DDBBBB;
+}
+.extFormTable tr.error td.label label {
+	color: #CC4422;
+}
+
+.extFormTable tr td ul.errorlist {
+	margin: 0;
+	line-height: 16px;
+}
+.extFormTable tr td ul.errorlist li {
+	list-style-type: none;
+	font-size: 12px;
+	color: #EE2222;
+}
+
+/* Checkboxes, Radio Buttons, Select Lists, Custom HTML Form Elements */
+.styled {
+	opacity: 0;
+	position: relative;
+	width: 190px;
+	z-index: 5;
+}
+.radioTable tr td {
+	width: auto;
+}
+.radioTable label {
+	font-weight: bold;
+	color: #335577;
+}
+.checkbox, .radio {
+	width: 19px;
+	height: 25px;
+	padding: 0 5px 0 0;
+	background: url(../images/checkbox.png) no-repeat;
+	display: block;
+	float: left;
+}
+.radio {
+	background: url(../images/radio.png) no-repeat;
+}
+.select {
+	position: absolute;
+	width: 158px; /* With the padding included, the width is 190 pixels: the actual width of the image. */
+	height: 21px;
+	padding: 0 24px 0 8px;
+	margin: 3px;
+	color: #fff;
+	font: 12px/21px arial,sans-serif;
+	background: url(../images/select.png) no-repeat;
+	overflow: hidden;
+}

@@ -5,12 +5,13 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.template import RequestContext
 from base.models import *
 from common.models import *
+from base.forms import *
 from django.shortcuts import render_to_response
 from django.contrib.auth import authenticate
 from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
-
+from django.forms.models import inlineformset_factory
 
 
 def index(request):
@@ -56,3 +57,19 @@ def jobdetail(request, order_id):
     partner = order.partner
     return render_to_response('jobdetail.html', locals(),
                               context_instance=RequestContext(request))
+
+def jobform(request, order_id):
+    order = JobOrder.objects.get(pk=order_id)
+    if request.POST:
+        JobCvFormset = inlineformset_factory(JobCv, JobCvPhone, extra=0)
+        form = JobCvForm(request.POST)
+        formset = JobCvFormset(request.POST)
+        return HttpResponseRedirect('base/jobdetail/%s' % order_id)
+    else :
+        cv = JobCv()
+        form = JobCvForm(instance=cv)
+        JobCvFormset = inlineformset_factory(JobCv, JobCvPhone, extra=0)
+        formset = JobCvFormset(instance=cv)
+        return render_to_response('jobcvform.html', locals(),
+                              context_instance=RequestContext(request))
+        

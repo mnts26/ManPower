@@ -1,0 +1,25 @@
+{% extends "main.html" %}
+
+{% block title %}Шинэ анкет{% endblock %}
+
+{% block style %}
+{{ form.media }}
+<link href="{{ STATIC_URL }}/css/jobcvform.css" rel="stylesheet" type="text/css"/>
+{% endblock %}
+
+{% block body %}
+    {% for f in po_product_form.management_form %} {{ f }} {% endfor %}
+    <form method="post" action="" enctype="multipart/form-data">
+        <table cellpadding="3" cellspacing="2" id="id_purchase_order_panel">
+            <tr><td class="label">{{ form.family_name.label }}:</td><td>{{ form.family_name }}</td></tr>
+            <tr><td class="label">{{ form.last_name.label }}:</td><td>{{ form.last_name }}</td></tr>
+            <tr><td class="label">{{ form.first_name.label }}:</td><td>{{ form.first_name }}</td></tr>
+            <tr><td class="label">{{ form.gender.label }}:</td><td>{{ form.gender }}</td></tr>
+            <tr><td class="label">{{ form.birthdate.label }}:</td><td>{{ form.birthdate }}</td></tr>
+            <tr><td class="label">{{ form.nation.label }}:</td><td>{{ form.nation }}</td></tr>
+            <tr><td class="label">{{ form.home_address.label }}:</td><td>{{ form.home_address }}</td></tr>
+        </table>
+    </form>
+
+
+{% endblock %}

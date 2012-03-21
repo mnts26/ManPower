@@ -120,7 +120,8 @@ INSTALLED_APPS = (
     'django.contrib.admindocs',
     'django_extensions',
     'base',
-    'common'
+    'common',
+    'usiextensions'
     # Uncomment the next line to enable the admin:
     # 'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
