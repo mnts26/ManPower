@@ -20,6 +20,7 @@ urlpatterns = patterns('',
     url(r'^$', include('base.urls')),
     url(r'^base/', include('base.urls')),
     url(r'^common/', include('common.urls')),
+    url(r'^ext/', include('usiextensions.urls')),
     
     (r'^extmedia/(?P<path>.*)$', 
                             'django.views.static.serve', 

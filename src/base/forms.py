@@ -8,51 +8,23 @@ from django import forms
 from django.forms import ModelForm
 from usiextensions import forms as extForms
 from base.models import *
+import datetime
 #from captcha.fields import CaptchaField, JavaChallengeField
 #from django.utils.translation import ugettext_lazy as _
 import re
 
 class JobCvForm(extForms.extModelForm) :
-#    username        = forms.RegexField(label=_("Username"), max_length=30, regex=r'^\w+$',
-#        help_text = _("Required. 30 characters or fewer. Alphanumeric characters only (letters, digits and underscores)."),
-#        error_message = _("This value must contain only letters, numbers and underscores."))
-#    password1       = forms.CharField(label=_("Password"), widget=forms.PasswordInput)
-#    password2       = forms.CharField(label=_("Password confirmation"), widget=forms.PasswordInput)
-#    email           = forms.EmailField(required=True)
-#    last_name       = forms.CharField(required=True)
-#    first_name      = forms.CharField(required=True)
-#    family_name     = forms.CharField(required=True)
-    #gender          = forms.
-#    location        = extForms.extModelChoiceField(label=_("Location"), model=Location, 
-#                search='name', display=('name','code'), required=True)
-#    nullBoolean     = forms.NullBooleanField(label=_('Tiimuu'), required=True)
-#    datetimer       = forms.DateTimeField(label=_('DateTime'), required=True)
-#    date            = forms.DateField(label=_('Date'))
-#    time            = forms.TimeField(label=_('Time'))
-#    captcha         = CaptchaField(label=_('Confirmation code'), required=True)
-#    challenge       = JavaChallengeField(label=_('Output of the following :'), required=True)
-    
-#    def clean_username(self) :
-#        username = self.cleaned_data["username"]
-#        try :
-#            User.objects.get(username=username)
-#        except User.DoesNotExist :
-#            return username
-#        raise forms.ValidationError(_("A user with that username already exists."))
-#
-#    def clean_password2(self) :
-#        password1 = self.cleaned_data.get("password1", "")
-#        password2 = self.cleaned_data["password2"]
-#        if password1 != password2:
-#            raise forms.ValidationError(_("The two password fields didn't match."))
-#        return password2
-#
-#    def save(self, commit=True) :
-#        user = super(MemberRegisterForm, self).save(commit=False)
-#        user.set_password(self.cleaned_data["password1"])
-#        if commit:
-#            user.save()
-#        return user
+    birthcity = extForms.extModelChoiceField(label=u'Төрсөн аймаг, хот', model=CommonCity, 
+                search='name', display=('name',))
+    birthdistrict = extForms.extModelChoiceField(label=u'Төрсөн сум, дүүрэг', model=CommonDistrict, 
+                search='name', display=('name','city__name'))
+    education = extForms.extModelChoiceField(label=u'Боловсрол', model=CommonEducation, 
+                search='name', display=('name',))
+    socialstatus = extForms.extModelChoiceField(label=u'Нийгмийн гарал', model=CommonSocialStatus, 
+                search='name', display=('name',))
+    district = extForms.extModelChoiceField(label=u'Үндсэн захиргаа', model=CommonDistrict, 
+                search='name', display=('name','city__name'))
+    salary_request = extForms.extDecimalField(label=u'Цалингийн хүлээлт', widget=extForms.extDecimalWidget)
     
     class Meta:
         model = JobCv
@@ -116,3 +88,26 @@ class JobCvForm(extForms.extModelForm) :
 #        sequence = [
 #            (_('Add comment'), ['commented_by','email','comment','captcha']),
 #        ]
+
+class JobOrderForm(extForms.extModelForm) :
+    category = extForms.extModelChoiceField(label=u'Ангилал', model=JobCategory, search='name', display=('parent__name','name',))
+    level =  extForms.extModelChoiceField(label=u'Зэрэглэл', model=JobLevel, search='name', display=('name',))
+    partner = forms.CharField(widget=forms.HiddenInput(), label='Байгууллага')
+    
+    def clean_partner(self):
+        data = self.cleaned_data
+        try:
+            Partner.objects.get(username = data['partner'])
+        except User.DoesNotExist:
+            return data['partner']
+        raise forms.ValidationError('This partner is already taken.')
+    def save(self, user, *args, **kwargs):
+        self.instance.partner = user             
+        self.instance.create_date = datetime.date.today()              
+        post = super(JobOrderForm, self).save(*args, **kwargs)
+        post.save()
+        return post
+
+    class Meta:
+        model = JobOrder
+        exclude = ['create_date']

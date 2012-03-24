@@ -1,19 +1,20 @@
 {% extends "main.html" %}
 
-{% block title %}Нүүр{% endblock %}
-
+{% block title %}tetstst{% endblock %}
 
 {% block body %}
 
 {% endblock %}
+            
 
- {% block leftside %}
-            <div id="aside">
-                <h4 class="title-03">Ажлын байрууд</h4>
+{% block leftside %}
+				 <div id="aside">
+                <h4 class="title-03">Миний цэс</h4>
                 <div class="in">
-                	<ul id="subnav">
+                    <ul id="subnav">
                         <li><a href="/base/addjobs">Ажлын байр нэмэх</a></li>
-                        <li><a href="/myjobs">Миний ажлын байрууд</a></li>
+                        <li><a href="/base/myjobs">Миний ажлын байрууд</a></li>
+                        <li class="last"><a href="#">Lorem ipsum sit amet</a></li>
                     </ul>
                 </div> <!-- /in -->
                 
@@ -33,7 +34,6 @@
                     </dl>
                     
                     <p class="nomb t-right"><a href="#" class="more">Older news</a></p>
-                
                 </div> <!-- /in -->
             </div> <!-- /aside -->
-           {% endblock %}
+{% endblock %}

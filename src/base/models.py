@@ -93,7 +93,6 @@ class JobOrder(models.Model):
     deadline = models.DateField(u'Эцсийн огноо', help_text=u'Хэрэв эцсийн огноо оруулахгүй бол уг ажлын байр байнга нээлттэй байх болно.')
     active = models.BooleanField(u'Идэвхитэй', help_text=u'Уг ажлын байр ажил горилогчид харагдах эсэх')
     create_date = models.DateField(u'Үүсгэсэн огноо', auto_now_add=True)
-    
     class Meta:
         verbose_name_plural = u"Ажлын байрууд"
         verbose_name = u"Ажлын байр"

@@ -19,6 +19,9 @@ urlpatterns = patterns('',
     url(r'^logout$', 'base.views.logoutview'),
     url(r'^joblist/(?P<categ_id>.*)$', 'base.views.joblist'),
     url(r'^jobdetail/(?P<order_id>.*)$', 'base.views.jobdetail'),
-    url(r'^jobform/(?P<order_id>.*)$', 'base.views.jobform')
+    url(r'^jobform/(?P<order_id>.*)$', 'base.views.jobform'),
+    url(r'^myjobs$', 'base.views.myjobs'),
+    url(r'^addjobs$', 'base.views.addjob'),
+    
     
 )

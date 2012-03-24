@@ -4,6 +4,7 @@
 @summary: USI Extensions views 
 """
 from django.shortcuts import render_to_response
+from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth.models import User, Group
 from django.core import serializers
@@ -14,6 +15,7 @@ from django.db.models.query import QuerySet
 from django.db.models import Q
 from django.http import HttpResponse
 
+@csrf_exempt
 def select_flexbox(request, model, search, display) :
     name = request.POST['q']
     page = int(request.POST['p'])

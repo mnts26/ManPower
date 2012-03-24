@@ -199,7 +199,7 @@ class extIntegerWidget(forms.TextInput) :
                 .example(function() {return 'Бүхэл тоон утга!';},
                     {className: 'extNumberExampleLabel'});
         </script>'''
-        return input + script
+        return mark_safe(input + script)
 
 class extDecimalWidget(forms.TextInput) :
     class Media:
@@ -211,14 +211,16 @@ class extDecimalWidget(forms.TextInput) :
               '/extmedia/script/jquery.example.min.js')
         
     def render(self, name, value, attrs=None) :
+        if not value:
+            value = ''
         input = u'<input type="text" value="%s" name="%s" id="id_%s" class="extTextInput">' % (value, name, name)
         script = u'''<script type="text/javascript">
             jQuery("#id_%s")
                 .format({precision: 2,autofix:true})
                 .example(function() {return 'Тоон утга!';},
                     {className: 'extNumberExampleLabel'});
-        </script>'''
-        return input + script
+        </script>''' % name
+        return mark_safe(input + script)
 
 class extSelect(forms.Select):
     class Media:
@@ -483,12 +485,12 @@ class extBooleanInput(forms.CheckboxInput):
 
     def render(self, name, value, attrs=None):
         html = u'<table class="radioTable"><tr><td><label style="float:left;" for="%(name)s_yes">%(yes_label)s</label><input type="radio" name="%(name)s" \
-            id="%(name)s_yes" value="True" ' %({'name':name,'yes_label':ugettext('Yes')}) 
+            id="%(name)s_yes" value="True" ' %({'name':name,'yes_label':ugettext(u'Тийм')}) 
         if value == True or value == u'True' :
             html += u'checked="checked"'
         html += u'/></td><td>&nbsp;&nbsp;&nbsp;</td>'
         html += u'<td><label style="float:left;" for="%(name)s_no">%(no_label)s</label><input type="radio" name="%(name)s" \
-            id="%(name)s_no" value="False" ' %({'name':name,'no_label':ugettext('No')})
+            id="%(name)s_no" value="False" ' %({'name':name,'no_label':ugettext(u'Үгүй')})
         if value == False or value == u'False' :
             html += u'checked="checked"'
         html += u'/></td></tr></table>'

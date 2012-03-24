@@ -15,7 +15,6 @@ from django.forms.models import inlineformset_factory
 
 
 def index(request):
-    
     return render_to_response('index.html', locals(), 
                               context_instance=RequestContext(request))
     
@@ -24,9 +23,11 @@ def login(request):
         username = request.POST.get('username')
         password = request.POST.get('password')
         user = authenticate(username=username, password=password)
+        
         if user is not None:
             if user.is_active:
                 auth_login(request, user)
+                return HttpResponseRedirect('/base/myjobs')
                 state = "You're successfully logged in!"
             else:
                 state = "Your account is not active, please contact the site admin."
@@ -46,9 +47,7 @@ def joblist(request, categ_id):
     
     categ = JobCategory.objects.get(id=categ_id)
     categ_ids = JobCategory.get_all_children(categ)
-    print 'categ_ids :', categ_ids
     job_list = JobOrder.objects.filter(category__in=categ_ids,active=True).order_by('-create_date')
-    print 'job_list :', job_list
     return render_to_response('joblist.html', locals(), 
                               context_instance=RequestContext(request))
 
@@ -68,8 +67,37 @@ def jobform(request, order_id):
     else :
         cv = JobCv()
         form = JobCvForm(instance=cv)
-        JobCvFormset = inlineformset_factory(JobCv, JobCvPhone, extra=0)
-        formset = JobCvFormset(instance=cv)
+        InlineFormSet = inlineformset_factory(JobCv, JobCvPhone, extra=5, max_num=5)
+        phoneform = InlineFormSet(instance=cv)
         return render_to_response('jobcvform.html', locals(),
                               context_instance=RequestContext(request))
         
+@login_required        
+def myjobs(request):
+    partner = None
+    partners = Partner.objects.filter(user__pk=request.user.pk)
+    if partners:
+        partner = partners[0]
+        return render_to_response('myjobs.html', locals(),
+                                  context_instance=RequestContext(request))
+    else :
+        print 'bhq'
+        return HttpResponseRedirect('/')
+
+@login_required
+def addjob(request):
+    partners = Partner.objects.filter(pk=request.user.pk)
+    partner = partners[0]
+    form = JobOrderForm()
+    if request.POST:
+        print '1'
+        form = JobOrderForm(request.POST)
+        if form.is_valid():
+            print '3'
+            form.save(user=request.user)
+            print '4'
+            return HttpResponseRedirect('/baitsaagch/dugnelt')
+    else :
+        return render_to_response('addjobs.html', locals(),
+                              context_instance=RequestContext(request))
+    
