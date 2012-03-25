@@ -101,8 +101,7 @@
 	</div> <!-- / top -->
 	
 </div> <!--panel -->
-{% block body %}
-  {% endblock%}
+
 <div id="main">
     <!-- Header -->
     <div id="header">
@@ -139,9 +138,10 @@
     <!-- Columns -->
     <div id="cols">
         <div id="cols-in" class="box">
+    		<div id="content">
     		{% block content %}
             <!-- Content -->	
-            <div id="content">
+            
 				<!--  
                 <div class="in">
                     <p id="breadcrumbs">You are here: <a href="#">Homepage</a> <span>/</span> <a href="#">Category</a> <span>/</span> <strong>Page</strong></p>
@@ -246,20 +246,24 @@
                 
                 </div> <!-- /in -->
                 
+            {% endblock %}
             </div> <!-- /content -->
-			{% endblock %}
+			
             <hr class="noscreen" />
 
             <!-- Aside -->
-            {% block leftside %}
             <div id="aside">
+                {% block leftside %}
+                
+                {% endblock %}
+                
                 <h4 class="title-03">Ажлын байрууд</h4>
                 <div class="in">
                 	<div id="treeMenu">
 						{% job_category_menu %}
 					</div>
                 </div> <!-- /in -->
-                
+               <!-- 
                 <h4 class="title-04">News</h4>
                 
                 <div class="in">
@@ -277,9 +281,10 @@
                     
                     <p class="nomb t-right"><a href="#" class="more">Older news</a></p>
                 
-                </div> <!-- /in -->
+                </div>
+                -->
             </div> <!-- /aside -->
-           {% endblock %}
+           
         </div> <!-- /cols-in -->
     </div> <!-- /cols -->
     

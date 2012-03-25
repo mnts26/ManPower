@@ -1,0 +1,36 @@
+{% extends "main.html" %}
+
+{% block title %}Шинэ анкет{% endblock %}
+
+{% block style %}
+{{ form.media }}
+<link href="{{ STATIC_URL }}/css/jobcvform.css" rel="stylesheet" type="text/css"/>
+<link href="{{ STATIC_URL }}/css/ac-container.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="{{ STATIC_URL }}/scripts/modernizr.custom.29473.js"></script>
+{% endblock %}
+
+{% block content %}
+	{% for f in phoneform.management_form %} {{ f }} {% endfor %}
+    <form method="post" action="" enctype="multipart/form-data">
+    <div class="in">
+        <section class="ac-container">
+			<div>
+				<input id="ac-1" name="accordion-1" type="radio"/>
+				<label for="ac-1">Үндсэн мэдээлэл</label>
+				<article class="ac-small">
+					<table cellpadding="3" cellspacing="2">
+			            <tr><td class="label">{{ form.family_name.label }}:</td><td>{{ form.family_name }}</td></tr>
+			            <tr><td class="label">{{ form.last_name.label }}:</td><td>{{ form.last_name }}</td></tr>
+			            <tr><td class="label">{{ form.first_name.label }}:</td><td>{{ form.first_name }}</td></tr>
+			            <tr><td class="label">{{ form.gender.label }}:</td><td>{{ form.gender }}</td></tr>
+			            <tr><td class="label">{{ form.birthdate.label }}:</td><td>{{ form.birthdate }}</td></tr>
+			            <tr><td class="label">{{ form.nation.label }}:</td><td>{{ form.nation }}</td></tr>
+			            <tr><td class="label">{{ form.home_address.label }}:</td><td>{{ form.home_address }}</td></tr>
+			        </table>
+				</article>
+			</div>
+		</section>
+	</div>
+	</form>
+    
+{% endblock %}

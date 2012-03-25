@@ -53,8 +53,11 @@ def joblist(request, categ_id):
 
 def jobdetail(request, order_id):
     order = JobOrder.objects.get(pk=order_id)
+    job_name = order.name
+    categ = order.category
+    job_list = [order]
     partner = order.partner
-    return render_to_response('jobdetail.html', locals(),
+    return render_to_response('joblist.html', locals(),
                               context_instance=RequestContext(request))
 
 def jobform(request, order_id):

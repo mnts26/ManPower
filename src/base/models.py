@@ -58,6 +58,13 @@ class JobCategory(models.Model):
         html += u'</div>'
         return html
     
+    def path(self):
+        
+        html = '<span>/</span><a href="/base/joblist/%s"><strong>%s</strong></a>' % (self.id, self.name)
+        if self.parent:
+            html = self.parent.path() + html
+        return html
+    
     def get_all_children(self):
         r = []
         r.append(self)
