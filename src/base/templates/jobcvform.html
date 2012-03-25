@@ -1,36 +1,113 @@
 {% extends "main.html" %}
+{% load basetags %}
 
 {% block title %}Шинэ анкет{% endblock %}
 
+{% block script %}
+<script type="text/javascript">
+$.ajaxPrefilter(function(options, originalOptions, jqXHR) {
+    if(!options.crossDomain) {
+        if(options.data) {
+            options.data += "&";
+        } else {
+            options.data = "";
+        }
+        options.data += "csrfmiddlewaretoken={{csrf_token}}";
+    }
+});
+</script>
+<script type="text/javascript" src="{{ STATIC_URL }}/scripts/modernizr.custom.29473.js"></script>
+{% endblock %}
+
 {% block style %}
 {{ form.media }}
-<link href="{{ STATIC_URL }}/css/jobcvform.css" rel="stylesheet" type="text/css"/>
 <link href="{{ STATIC_URL }}/css/ac-container.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="{{ STATIC_URL }}/scripts/modernizr.custom.29473.js"></script>
+<link href="{{ STATIC_URL }}/css/jobcvform.css" rel="stylesheet" type="text/css"/>
+<style type="text/css">
+div.in table{
+	margin: 0;
+	margin-top: 5px;
+}
+</style>
 {% endblock %}
 
 {% block content %}
 	{% for f in phoneform.management_form %} {{ f }} {% endfor %}
-    <form method="post" action="" enctype="multipart/form-data">
     <div class="in">
+    <form method="post" action="" enctype="multipart/form-data">
+    {% csrf_token %}
         <section class="ac-container">
-			<div>
-				<input id="ac-1" name="accordion-1" type="radio"/>
-				<label for="ac-1">Үндсэн мэдээлэл</label>
-				<article class="ac-small">
-					<table cellpadding="3" cellspacing="2">
-			            <tr><td class="label">{{ form.family_name.label }}:</td><td>{{ form.family_name }}</td></tr>
-			            <tr><td class="label">{{ form.last_name.label }}:</td><td>{{ form.last_name }}</td></tr>
-			            <tr><td class="label">{{ form.first_name.label }}:</td><td>{{ form.first_name }}</td></tr>
-			            <tr><td class="label">{{ form.gender.label }}:</td><td>{{ form.gender }}</td></tr>
-			            <tr><td class="label">{{ form.birthdate.label }}:</td><td>{{ form.birthdate }}</td></tr>
-			            <tr><td class="label">{{ form.nation.label }}:</td><td>{{ form.nation }}</td></tr>
-			            <tr><td class="label">{{ form.home_address.label }}:</td><td>{{ form.home_address }}</td></tr>
-			        </table>
-				</article>
-			</div>
+        <div>
+			<input id="ac-1" name="accordion-1" type="radio" checked />
+			<label for="ac-1">Ерөнхий мэдээлэл</label>
+			<article class="ac-large">
+				<table cellpadding="3" cellspacing="2">
+				    <tr><td class="label">{{ form.family_name.label }}:</td><td>{{ form.family_name }}</td></tr>
+		            <tr><td class="label">{{ form.last_name.label }}:</td><td>{{ form.last_name }}</td></tr>
+		            <tr><td class="label">{{ form.first_name.label }}:</td><td>{{ form.first_name }}</td></tr>
+		            <tr><td class="label">{{ form.gender.label }}:</td><td>{{ form.gender }}</td></tr>
+		            <tr><td class="label">{{ form.birthdate.label }}:</td><td>{{ form.birthdate }}</td></tr>
+		        </table>
+			</article>
+		</div>
+		<div>
+			<input id="ac-2" name="accordion-1" type="radio" />
+			<label for="ac-2">Ингэншил</label>
+			<article class="ac-large">
+				<table cellpadding="3" cellspacing="2">
+					<tr><td class="label">{{ form.nation.label }}:</td><td>{{ form.nation }}</td></tr>
+		            <tr><td class="label">{{ form.home_address.label }}:</td><td>{{ form.home_address }}</td></tr>
+		            <tr><td class="label">{{ form.birthcity.label }}:</td><td>{{ form.birthcity }}</td></tr>
+		            <tr><td class="label">{{ form.birthdistrict.label }}:</td><td>{{ form.birthdistrict }}</td></tr>
+		            <tr><td class="label">{{ form.socialstatus.label }}:</td><td>{{ form.socialstatus }}</td></tr>
+	            	<tr><td class="label">{{ form.district.label }}:</td><td>{{ form.district }}</td></tr>
+				</table>
+			</article>
+		</div>
+		<div>
+			<input id="ac-3" name="accordion-1" type="radio" />
+			<label for="ac-3">Боловсрол</label>
+			<article class="ac-large">
+				<table cellpadding="3" cellspacing="2">
+					<tr><td class="label">{{ form.education.label }}:</td><td>{{ form.education }}</td></tr>
+		            <tr><td class="label">{{ form.occupation.label }}:</td><td>{{ form.occupation }}</td></tr>
+		            <tr><td class="label">{{ form.passnumber.label }}:</td><td>{{ form.passnumber }}</td></tr>
+		            <tr><td class="label">{{ form.registernumber.label }}:</td><td>{{ form.registernumber }}</td></tr>
+	            </table>
+			</article>
+		</div>
+		<div>
+			<input id="ac-4" name="accordion-1" type="radio" />
+			<label for="ac-4">Бусад</label>
+			<article class="ac-large">
+				<table cellpadding="3" cellspacing="2">
+					<tr><td class="label">{{ form.method_return.label }}:</td><td>{{ form.method_return }}</td></tr>
+		            <tr><td class="label">{{ form.salary_request.label }}:</td><td>{{ form.salary_request }}</td></tr>
+		            <tr><td class="label">{{ form.date_posible.label }}:</td><td>{{ form.date_posible }}</td></tr>
+		            <tr><td class="label">{{ form.photo.label }}:</td><td>{{ form.photo }}</td></tr>
+	            </table>
+			</article>
+		</div>
 		</section>
+		{% for p_form in phoneform.forms %}
+			{% if p_form.errors %} {% render_error p_form %}{% endif %}
+		{% endfor %}
+		{% for f in phoneform.management_form %} {{ f }} {% endfor %}
+		<table cellpadding="3" cellspacing="2">
+			<tr>
+				<th>№</th>
+				<th>Төрөл</th>
+				<th>Дугаар</th>
+			</tr>
+		{% for pf in phoneform.forms %}
+			<tr>
+				<td>{{ forloop.counter }}</td>
+				<td>{{ pf.type }}</td>
+				<td>{{ pf.number }}</td>
+			</tr>
+		{% endfor %}
+		</table>
+    </form>
 	</div>
-	</form>
     
 {% endblock %}
