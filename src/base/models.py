@@ -172,7 +172,7 @@ class JobCvEducation(models.Model):
     start_year = models.CharField(u'Элссэн он', max_length=5)
     end_year = models.CharField(u'Төгссөн/төгсөх он', max_length=5)
     occupation = models.CharField(u'Эзэмшсэн мэргэжил', max_length=64, null=True, blank=True)
-    country = models.ForeignKey(CommonCountry, verbose_name=u'Хот', null=True, blank=True)
+    country = models.ForeignKey(CommonCountry, verbose_name=u'Улс', null=True, blank=True)
     meridian = models.DecimalField(u'Голч дүн', max_digits=3, decimal_places=2, null=True, blank=True)
     cv = models.ForeignKey('JobCv', verbose_name=u'Анкет', related_name='education_set')
     
@@ -230,8 +230,8 @@ class JobCvSkill(models.Model):
     cv = models.ForeignKey('JobCv', verbose_name=u'Анкет', related_name='skill_set', null=True, blank=True)
     
     class Meta:
-        verbose_name_plural = u"Компьютерийн мэдлэгүүд"
-        verbose_name = u"Компьютерийн мэдлэг"
+        verbose_name_plural = u"Компьютерын мэдлэгүүд"
+        verbose_name = u"Компьютерын мэдлэг"
 
     def __unicode__(self):
         return u'%s - %s' %(self.name, dict(SKILL_LEVEL_CHOICES).get(self.level, ''))
@@ -291,7 +291,7 @@ class JobCvRelation(models.Model):
     working = models.CharField(u'Байгууллагын нэр', max_length=64, null=True, blank=True)
     position = models.CharField(u'Албан тушаал', max_length=64, null=True, blank=True)
     phone = models.CharField(u'Холбогдох утас', max_length=20, null=True, blank=True)
-    email = models.CharField(u'E-mail', max_length=64, null=True, blank=True)
+    email = models.CharField(u'И-мэйл', max_length=64, null=True, blank=True)
     cv = models.ForeignKey('JobCv', verbose_name=u'Анкет', related_name='relation_set', null=True, blank=True)
     
     class Meta:

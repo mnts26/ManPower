@@ -10,7 +10,7 @@
 #ui-datepicker-div {
 	display: none;
 	border: 1px solid #FF9900;
-	z-index: 10;
+	z-index: 1000;
 }
 .ui-datepicker-inline {
 	float: left;
@@ -36,6 +36,7 @@ img.ui-datepicker-trigger {
 	padding: 2px;
 	background: #E0F4D7;
 	color: #000;
+	vertical-align: middle;
 }
 *html .ui-datepicker-prompt {
 	width: 185px;

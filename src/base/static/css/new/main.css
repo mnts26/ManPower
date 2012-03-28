@@ -38,7 +38,7 @@ h1,h2,h3,h4,h5,h6,p,address,blockquote,table,dl,fieldset {
 3) Layout
 ---------------------------------------------------------------------------------------------------------- */
 #main {
-	width: 940px;
+	width: 1200px;
 	padding: 10px;
 	margin: 0 auto;
 	overflow: hidden;
@@ -121,7 +121,7 @@ h1,h2,h3,h4,h5,h6,p,address,blockquote,table,dl,fieldset {
 
 #content {
 	float: left;
-	width: 600px;
+	width: 861px;
 }
 
 #aside {

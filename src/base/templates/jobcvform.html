@@ -26,7 +26,6 @@ $.ajaxPrefilter(function(options, originalOptions, jqXHR) {
 <style type="text/css">
 div.in table{
 	margin: 0;
-	margin-top: 5px;
 }
 </style>
 {% endblock %}
@@ -41,7 +40,7 @@ div.in table{
 			<input id="ac-1" name="accordion-1" type="radio" checked />
 			<label for="ac-1">Ерөнхий мэдээлэл</label>
 			<article class="ac-large">
-				<table cellpadding="3" cellspacing="2">
+				<table cellpadding="3" cellspacing="2" class="box">
 				    <tr><td class="label">{{ form.family_name.label }}:</td><td>{{ form.family_name }}</td></tr>
 		            <tr><td class="label">{{ form.last_name.label }}:</td><td>{{ form.last_name }}</td></tr>
 		            <tr><td class="label">{{ form.first_name.label }}:</td><td>{{ form.first_name }}</td></tr>
@@ -51,10 +50,10 @@ div.in table{
 			</article>
 		</div>
 		<div>
-			<input id="ac-2" name="accordion-1" type="radio" />
+			<input id="ac-2" name="accordion-2" type="radio" />
 			<label for="ac-2">Ингэншил</label>
 			<article class="ac-large">
-				<table cellpadding="3" cellspacing="2">
+				<table cellpadding="3" cellspacing="2" class="box">
 					<tr><td class="label">{{ form.nation.label }}:</td><td>{{ form.nation }}</td></tr>
 		            <tr><td class="label">{{ form.home_address.label }}:</td><td>{{ form.home_address }}</td></tr>
 		            <tr><td class="label">{{ form.birthcity.label }}:</td><td>{{ form.birthcity }}</td></tr>
@@ -65,10 +64,10 @@ div.in table{
 			</article>
 		</div>
 		<div>
-			<input id="ac-3" name="accordion-1" type="radio" />
+			<input id="ac-3" name="accordion-3" type="radio" />
 			<label for="ac-3">Боловсрол</label>
 			<article class="ac-large">
-				<table cellpadding="3" cellspacing="2">
+				<table cellpadding="3" cellspacing="2" class="box">
 					<tr><td class="label">{{ form.education.label }}:</td><td>{{ form.education }}</td></tr>
 		            <tr><td class="label">{{ form.occupation.label }}:</td><td>{{ form.occupation }}</td></tr>
 		            <tr><td class="label">{{ form.passnumber.label }}:</td><td>{{ form.passnumber }}</td></tr>
@@ -77,10 +76,10 @@ div.in table{
 			</article>
 		</div>
 		<div>
-			<input id="ac-4" name="accordion-1" type="radio" />
+			<input id="ac-4" name="accordion-4" type="radio" />
 			<label for="ac-4">Бусад</label>
 			<article class="ac-large">
-				<table cellpadding="3" cellspacing="2">
+				<table cellpadding="3" cellspacing="2" class="box">
 					<tr><td class="label">{{ form.method_return.label }}:</td><td>{{ form.method_return }}</td></tr>
 		            <tr><td class="label">{{ form.salary_request.label }}:</td><td>{{ form.salary_request }}</td></tr>
 		            <tr><td class="label">{{ form.date_posible.label }}:</td><td>{{ form.date_posible }}</td></tr>
@@ -88,25 +87,234 @@ div.in table{
 	            </table>
 			</article>
 		</div>
-		</section>
 		{% for p_form in phoneform.forms %}
 			{% if p_form.errors %} {% render_error p_form %}{% endif %}
 		{% endfor %}
 		{% for f in phoneform.management_form %} {{ f }} {% endfor %}
-		<table cellpadding="3" cellspacing="2">
-			<tr>
-				<th>№</th>
-				<th>Төрөл</th>
-				<th>Дугаар</th>
-			</tr>
-		{% for pf in phoneform.forms %}
-			<tr>
-				<td>{{ forloop.counter }}</td>
-				<td>{{ pf.type }}</td>
-				<td>{{ pf.number }}</td>
-			</tr>
+		<div>
+			<input id="ac-5" name="accordion-5" type="radio"/>
+			<label for="ac-5">Утас</label>
+			<article class="ac-large">
+				<table cellpadding="3" cellspacing="2" class="grid">
+					<tr><th width="15%" style="text-align:right">№</th>
+						<th width="30%">Төрөл</th>
+						<th width="*">Дугаар</th></tr>
+					{% for pf in phoneform.forms %}
+						<tr>
+							<td style="text-align:right">{{ forloop.counter }}</td>
+							<td>{{ pf.type }}</td>
+							<td>{{ pf.number }}</td>
+						</tr>
+					{% endfor %}
+				</table>
+			</article>
+		</div>
+		{% for p_form in occupationform.forms %}
+			{% if p_form.errors %} {% render_error p_form %}{% endif %}
 		{% endfor %}
-		</table>
+		{% for f in occupationform.management_form %} {{ f }} {% endfor %}
+		<div>
+			<input id="ac-6" name="accordian-6" type="radio"/>
+			<label for="ac-6">Боловсрол</label>
+			<article class="ac-large">
+				<table cellpadding="3" cellspacing="2" class="grid">
+					<tr><th width="5%" style="text-align:right">№</th>
+						<th width="10%">Төрөл</th>
+						<th width="20%">Сургууль</th>
+						<th width="15%">Хаана</th>
+						<th width="10%">Элссэн он</th>
+						<th width="10%">Төгссөн /<br/>төгсөх он</th>
+						<th width="10%">Мэргэжил</th>
+						<th width="10%">Голч дүн</th>
+					</tr>
+					{% for pf in occupationform.forms %}
+						<tr>
+							<td style="text-align:right">{{ forloop.counter }}</td>
+							<td>{{ pf.type }}</td>
+							<td>{{ pf.name }}</td>
+							<td>{{ pf.country }}</td>
+							<td>{{ pf.start_year }}</td>
+							<td>{{ pf.end_year }}</td>
+							<td>{{ pf.occupation }}</td>
+							<td>{{ pf.meridian }}</td>
+						</tr>
+					{% endfor %}
+				</table>
+			</article>
+		</div>
+		{% for p_form in courseform.forms %}
+			{% if p_form.errors %} {% render_error p_form %}{% endif %}
+		{% endfor %}
+		{% for f in courseform.management_form %} {{ f }} {% endfor %}
+		<div>
+			<input id="ac-7" name="accordian-7" type="radio"/>
+			<label for="ac-7">Курс дамжаа</label>
+			<article class="ac-large">
+				<table cellpadding="3" cellspacing="2" class="grid">
+					<tr><th width="5%" style="text-align:right">№</th>
+						<th width="25%">Курс</th>
+						<th width="10%">Элссэн он</th>
+						<th width="10%">Төгссөн /<br/>төгсөх он</th>
+						<th width="25%">Мэргэжил</th>
+						<th width="25%">Сертификат №</th>
+					</tr>
+					{% for pf in courseform.forms %}
+						<tr>
+							<td style="text-align:right">{{ forloop.counter }}</td>
+							<td>{{ pf.name }}</td>
+							<td>{{ pf.start_year }}</td>
+							<td>{{ pf.end_year }}</td>
+							<td>{{ pf.occupation }}</td>
+							<td>{{ pf.certificate }}</td>
+						</tr>
+					{% endfor %}
+				</table>
+			</article>
+		</div>
+		{% for p_form in languageform.forms %}
+			{% if p_form.errors %} {% render_error p_form %}{% endif %}
+		{% endfor %}
+		{% for f in languageform.management_form %} {{ f }} {% endfor %}
+		<div>
+			<input id="ac-8" name="accordian-8" type="radio"/>
+			<label for="ac-8">Гадаад хэлний мэдлэг</label>
+			<article class="ac-large">
+				<table cellpadding="3" cellspacing="2" class="grid">
+					<tr><th width="5%" style="text-align:right">№</th>
+						<th width="25%">Хэл</th>
+						<th width="10%">Үзсэн <br/> хугацаа(сар)</th>
+						<th width="15%">Ярьсныг ойлгох</th>
+						<th width="15%">Өөрөө ярих</th>
+						<th width="15%">Уншиж ойлгох</th>
+						<th width="15%">Бичиж орчуулах</th>
+					</tr>
+					{% for pf in languageform.forms %}
+						<tr>
+							<td style="text-align:right">{{ forloop.counter }}</td>
+							<td>{{ pf.language }}</td>
+							<td>{{ pf.period }}</td>
+							<td>{{ pf.understand }}</td>
+							<td>{{ pf.speak }}</td>
+							<td>{{ pf.read }}</td>
+							<td>{{ pf.write }}</td>
+						</tr>
+					{% endfor %}
+				</table>
+			</article>
+		</div>
+		{% for p_form in skillform.forms %}
+			{% if p_form.errors %} {% render_error p_form %}{% endif %}
+		{% endfor %}
+		{% for f in skillform.management_form %} {{ f }} {% endfor %}
+		<div>
+			<input id="ac-9" name="accordian-9" type="radio"/>
+			<label for="ac-9">Компьютерын мэдлэг</label>
+			<article class="ac-large">
+				<table cellpadding="3" cellspacing="2" class="grid">
+					<tr><th width="5%" style="text-align:right">№</th>
+						<th width="25%">Програм</th>
+						<th width="10%">Түвшин</th>
+					</tr>
+					{% for pf in skillform.forms %}
+						<tr>
+							<td style="text-align:right">{{ forloop.counter }}</td>
+							<td>{{ pf.name }}</td>
+							<td>{{ pf.level }}</td>
+						</tr>
+					{% endfor %}
+				</table>
+			</article>
+		</div>
+		{% for p_form in usageform.forms %}
+			{% if p_form.errors %} {% render_error p_form %}{% endif %}
+		{% endfor %}
+		{% for f in usageform.management_form %} {{ f }} {% endfor %}
+		<div>
+			<input id="ac-10" name="accordian-10" type="radio"/>
+			<label for="ac-10">Оффисын тоног төхөөрөмжийн мэдлэг</label>
+			<article class="ac-large">
+				<table cellpadding="3" cellspacing="2" class="grid">
+					<tr><th width="5%" style="text-align:right">№</th>
+						<th width="25%">Тоног төхөөрөмж</th>
+						<th width="10%">Түвшин</th>
+					</tr>
+					{% for pf in usageform.forms %}
+						<tr>
+							<td style="text-align:right">{{ forloop.counter }}</td>
+							<td>{{ pf.name }}</td>
+							<td>{{ pf.level }}</td>
+						</tr>
+					{% endfor %}
+				</table>
+			</article>
+		</div>
+		{% for p_form in workingform.forms %}
+			{% if p_form.errors %} {% render_error p_form %}{% endif %}
+		{% endfor %}
+		{% for f in workingform.management_form %} {{ f }} {% endfor %}
+		<div>
+			<input id="ac-11" name="accordian-11" type="radio"/>
+			<label for="ac-11">Ажил эрхлэлт</label>
+			<article class="ac-large">
+				<table cellpadding="3" cellspacing="2" class="grid">
+					<tr><th width="5%" style="text-align:right">№</th>
+						<th width="20%">Байгууллага</th>
+						<th width="10%">Салбар</th>
+						<th width="10%">Орсон огноо</th>
+						<th width="10%">Гарсан огноо</th>
+						<th width="15%">Албан тушаал</th>
+						<th width="20%">Хаяг</th>
+						<th width="10%">Гарсан шалтгаан</th>
+					</tr>
+					{% for pf in workingform.forms %}
+						<tr>
+							<td style="text-align:right">{{ forloop.counter }}</td>
+							<td>{{ pf.name }}</td>
+							<td>{{ pf.category }}</td>
+							<td>{{ pf.date_start }}</td>
+							<td>{{ pf.date_stop }}</td>
+							<td>{{ pf.position }}</td>
+							<td>{{ pf.address }}</td>
+							<td>{{ pf.reason }}</td>
+						</tr>
+					{% endfor %}
+				</table>
+			</article>
+		</div>
+		{% for p_form in relationform.forms %}
+			{% if p_form.errors %} {% render_error p_form %}{% endif %}
+		{% endfor %}
+		{% for f in relationform.management_form %} {{ f }} {% endfor %}
+		<div>
+			<input id="ac-12" name="accordian-12" type="radio"/>
+			<label for="ac-12">Гэр бүл</label>
+			<article class="ac-large">
+				<table cellpadding="3" cellspacing="2" class="grid">
+					<tr><th width="5%" style="text-align:right">№</th>
+						<th width="20%">Хамаарал</th>
+						<th width="10%">Эцгийн нэр</th>
+						<th width="10%">Өөрийн нэр</th>
+						<th width="10%">Ажлын газар</th>
+						<th width="15%">Албан тушаал</th>
+						<th width="20%">Утас</th>
+						<th width="10%">И-мэйл</th>
+					</tr>
+					{% for pf in relationform.forms %}
+						<tr>
+							<td style="text-align:right">{{ forloop.counter }}</td>
+							<td>{{ pf.reference }}</td>
+							<td>{{ pf.last_name }}</td>
+							<td>{{ pf.first_name }}</td>
+							<td>{{ pf.working }}</td>
+							<td>{{ pf.position }}</td>
+							<td>{{ pf.phone }}</td>
+							<td>{{ pf.email }}</td>
+						</tr>
+					{% endfor %}
+				</table>
+			</article>
+		</div>
+		</section>
     </form>
 	</div>
     
