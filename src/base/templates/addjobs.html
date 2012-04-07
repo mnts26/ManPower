@@ -12,8 +12,6 @@
 {% endblock %}
 
 	{% block content %}
-            <!-- Content -->	
-            <div id="content">
               	 <!-- <div class="in">
                     <p id="breadcrumbs">You are here: <a href="/base/myjobs">Миний ажлын байрууд</a> <span>/</span><strong>Ажлын байр нэмэх</strong></p>
                 </div>
@@ -32,6 +30,7 @@
                     </div> <!-- /box -->
 					
 
+                    {% block comment %}
                     <!-- Older articles -->
                     <h4 class="title-02"><span>Older articles</span></h4>
                     
@@ -103,47 +102,17 @@
                     </div> <!-- /cols5050 -->
 
                     <p class="nomb t-right"><a href="#" class="more">More articles</a></p>
+                    {% endblock %}
                 
                 </div> <!-- /in -->
                 
-            </div> <!-- /content -->
-			{% endblock %}
+		{% endblock %}
 
 
 
 
 
             
-
 {% block leftside %}
-				 <div id="aside">
-                <h4 class="title-03">Миний цэс</h4>
-                <div class="in">
-                    <ul id="subnav">
-                        <li><a href="/base/addjobs">Ажлын байр нэмэх</a></li>
-                        <li><a href="/base/myjobs">Миний ажлын байрууд</a></li>
-                        <li class="last"><a href="#">Lorem ipsum sit amet</a></li>
-                    </ul>
-                </div> <!-- /in -->
-                
-                <h4 class="title-04">News</h4>
-                
-                <div class="in">
-                
-                    <dl id="news" class="box">
-                        <dt>15. 05. 2008</dt>
-                        <dd>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. <a href="#">Proin scelerisque</a> sem veil. Aliquam erat volutpat.</dd>
-                        
-                        <dt>15. 05. 2008</dt>
-                        <dd>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. <a href="#">Proin scelerisque</a> sem veil. Aliquam erat volutpat.</dd>
-                        
-                        <dt>15. 05. 2008</dt>
-                        <dd>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. <a href="#">Proin scelerisque</a> sem veil. Aliquam erat volutpat.</dd>
-                    </dl>
-                    
-                    <p class="nomb t-right"><a href="#" class="more">Older news</a></p>
-                
-                </div> <!-- /in -->
 
-            </div> <!-- /aside -->
 {% endblock %}

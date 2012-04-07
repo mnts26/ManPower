@@ -113,10 +113,26 @@ h1,h2,h3,h4,h5,h6,p,address,blockquote,table,dl,fieldset {
 	background: url("../images/cols.gif") 0 0 no-repeat;
 }
 
+#cols-full {
+	margin-bottom: 10px;
+	background: url("../images/cols-full.gif") 0 0 no-repeat;
+}
+
 #cols-in {
 	min-height: 430px;
 	padding: 20px;
 	background: url("../images/cols-in.gif") 0 100% no-repeat;
+}
+
+#cols-in-full {
+	min-height: 430px;
+	padding: 20px;
+	background: url("../images/cols-in-full.gif") 0 100% no-repeat;
+}
+
+#cols-in-full #content {
+	float: left;
+	width: 1165px;
 }
 
 #content {

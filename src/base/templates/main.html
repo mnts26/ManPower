@@ -136,10 +136,11 @@
     <hr class="noscreen" />
     
     <!-- Columns -->
-    <div id="cols">
-        <div id="cols-in" class="box">
+    <div id="cols{% if full_content %}-full{% endif %}">
+        <div id="cols-in{% if full_content %}-full{% endif %}" class="box">
     		<div id="content">
-    		{% block content %}
+    	{% block content %}
+    		
             <!-- Content -->	
             
 				<!--  
@@ -248,15 +249,20 @@
                 
             {% endblock %}
             </div> <!-- /content -->
-			
             <hr class="noscreen" />
 
+            {% if not full_content %}
             <!-- Aside -->
             <div id="aside">
-                {% block leftside %}
-                
-                {% endblock %}
-                
+			   <h4 class="title-03">Миний цэс</h4>
+			   <div class="in">
+			       <ul id="subnav">
+			            <li><a href="/base/addjobs">Ажлын байр нэмэх</a></li>
+			            <li><a href="/base/myjobs">Миний ажлын байрууд</a></li>
+			            <li class="last"><a href="#">Lorem ipsum sit amet</a></li>
+			        </ul>
+			   </div> <!-- /in -->
+			
                 <h4 class="title-03">Ажлын байрууд</h4>
                 <div class="in">
                 	<div id="treeMenu">
@@ -284,6 +290,9 @@
                 </div>
                 -->
             </div> <!-- /aside -->
+            {% endif %}
+			
+            
            
         </div> <!-- /cols-in -->
     </div> <!-- /cols -->

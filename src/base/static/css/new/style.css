@@ -89,12 +89,14 @@ table.box td.label {
 	font-weight: normal;
 	text-align: right;
 	padding-right: 4px;
-	vertical-align: middle;
+	vertical-align: top;
+	padding-top: 6px;
 }
 
 table.grid th {
 	font-size: 11px;
 	color: #55548a;
+	border-bottom: 1px solid #0081C7;
 }
 
 table.grid td select{
@@ -102,5 +104,18 @@ table.grid td select{
 }
 
 table.grid input[type="text"] {
-	width: 40px;
+	width: 120px;
+}
+
+table.grid td {
+	vertical-align: middle;
+}
+
+span.error_list { color:#CC4422; font-size: 12px; font-weight: bold;}
+td.error_list .extTextInput,
+td.error_list .ffb-input,
+td.error_list .extTextArea
+ {
+	background: #FFDDFF url(/extmedia/images/textinput_error.png) repeat-x scroll left top;
+	border-color: #BB9999 #BB9999 #DDBBBB;
 }

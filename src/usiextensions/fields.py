@@ -130,6 +130,7 @@ class extFloatField(FloatField) :
         super(extFloatField, self).__init__(self, *args, **kwargs)
 
 class extDecimalField(DecimalField) :
+    widget = extDecimalWidget
 #    default_error_messages = {
 #        'invalid'             : _(u'Тоон утга оруулна уу!'),
 #        'max_value'           : _(u'%s-с бага буюу тэнцүү утга оруулна уу!'),
@@ -209,7 +210,7 @@ class extModelChoiceField(forms.ChoiceField) :
     }
 
     def __init__(self, model=None, search=None, display=None, required=True, 
-                 label=None, initial=None, help_text=None, error_messages=None, show_hidden_initial=False):
+                 label=None, initial=None, help_text=None, error_messages=None, show_hidden_initial=False, cwidth=None):
         
         if label is not None:
             label = smart_unicode(label)
@@ -220,7 +221,9 @@ class extModelChoiceField(forms.ChoiceField) :
         else:
             self.help_text = smart_unicode(help_text)
         
-        self.widget = extModelSelect(attrs={'model':model,'search':search,'display':display})
+        if cwidth is None:
+            cwidth = 230
+        self.widget = extModelSelect(attrs={'model':model,'search':search,'display':display,'width':cwidth})
         self.model = model
 
         # Increase the creation counter, and save our local copy.

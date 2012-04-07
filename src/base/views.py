@@ -61,33 +61,62 @@ def jobdetail(request, order_id):
                               context_instance=RequestContext(request))
 
 def jobform(request, order_id):
+    full_content = True
     order = JobOrder.objects.get(pk=order_id)
+    PhoneFormSet = inlineformset_factory(JobCv, JobCvPhone, extra=5, max_num=5, 
+                                             form=JobCvPhoneForm, formset=PhoneInlineFormSet)
+    OccupationFormSet = inlineformset_factory(JobCv, JobCvEducation, extra=5, max_num=5,
+                                              form=JobCvEducationForm)
+    CourseFormSet = inlineformset_factory(JobCv, JobCvCourse, extra=5, max_num=5,
+                                          form=JobCvCourseForm)
+    LanguageFormSet = inlineformset_factory(JobCv, JobCvForeignLanguage, extra=5, max_num=5,
+                                            form=JobCvLanguageForm)
+    SkillFormSet = inlineformset_factory(JobCv, JobCvSkill, extra=8, max_num=8,
+                                         form=JobCvSkillForm)
+    UsageFormSet = inlineformset_factory(JobCv, JobCvUsage, extra=8, max_num=8,
+                                         form=JobCvUsageForm)
+    WorkingFormSet = inlineformset_factory(JobCv, JobCvWorking, extra=5, max_num=5,
+                                           form=JobCvWorkingForm)
+    RelationFormSet = inlineformset_factory(JobCv, JobCvRelation, extra=5, max_num=5,
+                                            form=JobCvRelationForm)
     if request.POST:
-        JobCvFormset = inlineformset_factory(JobCv, JobCvPhone, extra=0)
-        form = JobCvForm(request.POST)
-        formset = JobCvFormset(request.POST)
-        return HttpResponseRedirect('base/jobdetail/%s' % order_id)
+        cv = JobCv()
+        form = JobCvForm(request.POST, request.FILES, instance=cv)
+        phoneform = PhoneFormSet(request.POST, instance=cv)
+        occupationform = OccupationFormSet(request.POST, instance=cv)
+        courseform = CourseFormSet(request.POST, instance=cv)
+        languageform = LanguageFormSet(request.POST, instance=cv)
+        skillform = SkillFormSet(request.POST, instance=cv)
+        usageform = UsageFormSet(request.POST, instance=cv)
+        workingform = WorkingFormSet(request.POST, instance=cv)
+        relationform = RelationFormSet(request.POST, instance=cv)
+        if form.is_valid() and phoneform.is_valid() and occupationform.is_valid() and \
+            courseform.is_valid() and languageform.is_valid() and skillform.is_valid() and \
+            usageform.is_valid() and workingform.is_valid() and relationform.is_valid():
+            
+            cvobject = form.save()
+            phoneform.save()
+            occupationform.save()
+            courseform.save()
+            languageform.save()
+            skillform.save()
+            usageform.save()
+            workingform.save()
+            relationform.save()
+            return HttpResponseRedirect('/base/jobdetail/%s' % order_id)
     else :
         cv = JobCv()
         form = JobCvForm(instance=cv)
-        PhoneFormSet = inlineformset_factory(JobCv, JobCvPhone, extra=5, max_num=5)
         phoneform = PhoneFormSet(instance=cv)
-        OccupationFormSet = inlineformset_factory(JobCv, JobCvEducation, extra=5, max_num=8)
         occupationform = OccupationFormSet(instance=cv)
-        CourseFormSet = inlineformset_factory(JobCv, JobCvCourse, extra=5, max_num=8)
         courseform = CourseFormSet(instance=cv)
-        LanguageFormSet = inlineformset_factory(JobCv, JobCvForeignLanguage, extra=5, max_num=5)
         languageform = LanguageFormSet(instance=cv)
-        SkillFormSet = inlineformset_factory(JobCv, JobCvSkill, extra=5, max_num=8)
         skillform = SkillFormSet(instance=cv)
-        UsageFormSet = inlineformset_factory(JobCv, JobCvUsage, extra=5, max_num=8)
         usageform = UsageFormSet(instance=cv)
-        WorkingFormSet = inlineformset_factory(JobCv, JobCvWorking, extra=5, max_num=5)
         workingform = WorkingFormSet(instance=cv)
-        RelationFormSet = inlineformset_factory(JobCv, JobCvRelation, extra=5, max_num=5)
         relationform = RelationFormSet(instance=cv)
-        return render_to_response('jobcvform.html', locals(),
-                              context_instance=RequestContext(request))
+    return render_to_response('jobcvform.html', locals(),
+                          context_instance=RequestContext(request))
         
 @login_required        
 def myjobs(request):

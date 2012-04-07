@@ -76,7 +76,6 @@ class extBaseForm(forms.BaseForm) :
     def _html_output(self, normal_row, error_row, row_ender, 
                      help_text_html, title_start_row, title_end_row,
                      errors_on_separate_row):
-        print 'called _html_output'
         "Helper function for outputting HTML. Used by as_table(), as_ul(), as_p()."
         top_errors = self.non_field_errors() # Errors that should be displayed above all fields.
         output, hidden_fields = [], []
@@ -172,7 +171,6 @@ class extBaseForm(forms.BaseForm) :
         return u'\n'.join(output)
     
     def as_table(self) :
-        print 'called as_table'
         "Returns this form rendered as HTML <tr>s -- excluding the <table></table>."
         normal_row = u'<tr class="%(error_class)s"><td class="label">%(label)s</td><td>%(field)s%(help_text)s%(errors)s</td></tr>'
         error_row = u'<tr><td colspan="2">%s</td></tr>'

@@ -265,35 +265,66 @@ class RenderErrorNode(Node):
                          u'The submitted file is empty.': u'Таны оруулсан файл хоосон байна.'}
         
         css = '<style type="text/css">'
-        css += '.error_list label { color:#CC4422; font-size: 12px; font-weight: bold; }'
-        css += '.error_list { color: #CC2222; font-size: 12px; font-weight: normal; }'
+        css += 'ul.error_list label { color:#CC4422; font-size: 12px; font-weight: bold; }'
+        css += 'ul.error_list { color: #CC2222; font-size: 12px; font-weight: normal; list-style-type: none; padding-left:20px}'
         css += '</style>'
         html = '<ul class="error_list">'
-        for field in form :
-            if field.errors :
-                html += u'<li>%s - ' %field.label_tag()
-                for error in field.errors :
-                    if type(error) == unicode :
-                        msg = error
-                    else :
-                        msg = error.__unicode__()
-                    if translate_dic.has_key(msg) :
-                        html += u'%s, ' %translate_dic[msg]
-                    else :
-                        html += u'%s, ' %msg
-                html += '</li>\n'
-        for error in form.non_field_errors() :
-            msg = error
-            if type(msg) != unicode :
-                msg = msg.__unicode__()
-            if translate_dic.has_key(msg) :
-                html += u'<li>%s</li>\n' %translate_dic[msg]
-            else :
-                html += u'<li>%s</li>\n' %msg
+        used_error = []
+        if type(form) == type([]):
+            forms = form
+        else :
+            forms = [form]
+        for form in forms:
+            for field in form :
+                if field.errors :
+                    html += '<li>'
+                    first = True
+                    for error in field.errors :
+                        fmsg = u''
+                        if type(error) == unicode :
+                            msg = error
+                        else :
+                            msg = error.__unicode__()
+                        if msg == u'This field is required.':
+                            fmsg = u'<b>%s</b> талбарыг бөглөнө үү!' % field.label
+                        else :
+                            if translate_dic.has_key(msg) :
+                                fmsg = u'<b>%s</b> - %s ' %(field.label,translate_dic[msg])
+                            else :
+                                fmsg = u'<b>%s</b> - %s ' %(field.label,msg)
+                        if fmsg not in used_error:
+                            if not first:
+                                fmsg = ', '+fmsg
+                            first = False
+                            html += fmsg
+                            used_error.append(fmsg)
+                    html += '</li>\n'
+            for error in form.non_field_errors() :
+                msg = error
+                if type(msg) != unicode :
+                    msg = msg.__unicode__()
+                if translate_dic.has_key(msg) :
+                    html += u'<li>%s</li>\n' %translate_dic[msg]
+                else :
+                    html += u'<li>%s</li>\n' %msg
         html += '</ul>\n'
         return css + html
 
 register.tag('render_error', do_render_error)
+
+def translate(msg):
+    translate_dic = {u'Enter a number.':u'Тоон утга оруулна уу!', 
+                         u'This field is required.': u'Энэ талбарыг бөглөнө үү!',
+                         u'Enter a whole number.': u'Бүхэл тоон утга оруулна уу!',
+                         u'Enter a valid date/time.': u'Алдаатай байна.!',
+                         u'Enter a valid URL.': u'Алдаатай байна.!',
+                         u'This URL appears to be a broken link.': u'Веб хаяг ашиглагдахгүй байна.!',
+                         u'Enter a valid e-mail address.': u'Зөв хаяг оруулна уу.!',
+                         u'Upload a valid image. The file you uploaded was either not an image or a corrupted image.': u'Тохирохгүй зураг оруулсан байна. Зөвхөн jpeg, jpe, jpg төрөлтэй зураг оруулна уу.',
+                         u'The submitted file is empty.': u'Таны оруулсан файл хоосон байна.'}
+    return translate_dic.get(msg, msg)
+
+register.filter('translate', translate)
 
 def do_ifmatch(parser, token):
     """ Check to see if the argument 1 match given pattern (argument 2)

@@ -92,5 +92,8 @@
 	height: 180px;
 }
 .ac-container input:checked ~ article.ac-large{
-	height: 230px;
+	height: 260px;
+}
+.ac-container input:checked ~ article.ac-extra-large {
+	height: 330px;
 }

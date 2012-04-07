@@ -30,7 +30,7 @@ class extDateWidget(forms.TextInput) :
         )
         
     def render(self, name, value, attrs=None) :
-        input = u'<input type="text" value="%s" name="%s" id="id_%s" class="extTextInput">' % (value or '', name, name)
+        input = u'<input type="text" value="%s" name="%s" id="id_%s" class="extTextInput"/>' % (value or '', name, name)
         script = u'''<script type="text/javascript">
             jQuery('#id_%s')
                 .datepicker({ 
@@ -41,7 +41,7 @@ class extDateWidget(forms.TextInput) :
                     duration: 'slow',
                     firstDay: 1
                 })
-                .css({'color':'#666666','text-align':'center','width':'180px'});
+                .css({'color':'#666666','text-align':'center','width':'85px'});
         </script>''' % name
         return mark_safe(input + script)
 
@@ -182,7 +182,7 @@ class extRichTextEditor2(forms.Textarea):
 
         
 
-class extIntegerWidget(forms.TextInput) :
+class extIntegerWidget(extTextInput) :
     class Media:
         css = {
             'all': ('/extmedia/css/widgets.css',)
@@ -190,15 +190,20 @@ class extIntegerWidget(forms.TextInput) :
         js = (#'/extmedia/script/jquery-1.3.2.min.js',
               '/extmedia/script/jquery.format.1.02.js',
               '/extmedia/script/jquery.example.min.js')
-        
+    
+    def __init__(self, attrs=None):
+        super(extIntegerWidget, self).__init__(attrs=attrs)
+    
     def render(self, name, value, attrs=None) :
-        input = u'<input type="text" value="%s" name="%s" id="id_%s" class="extTextInput">' % (value, name, name)
+        if value is None:
+            value = ''
+        input = u'<input type="text" value="%s" name="%s" id="id_%s" class="extTextInput" %s/>' % (value, name, name, flatatt(self.attrs or {}))
         script = u'''<script type="text/javascript">
             jQuery("#id_%s")
                 .format({precision: 0,autofix:true})
-                .example(function() {return 'Бүхэл тоон утга!';},
+                .example(function() {return 'Тоо...!';},
                     {className: 'extNumberExampleLabel'});
-        </script>'''
+        </script>''' % (name,)
         return mark_safe(input + script)
 
 class extDecimalWidget(forms.TextInput) :
@@ -213,7 +218,7 @@ class extDecimalWidget(forms.TextInput) :
     def render(self, name, value, attrs=None) :
         if not value:
             value = ''
-        input = u'<input type="text" value="%s" name="%s" id="id_%s" class="extTextInput">' % (value, name, name)
+        input = u'<input type="text" value="%s" name="%s" id="id_%s" class="extTextInput"/>' % (value, name, name)
         script = u'''<script type="text/javascript">
             jQuery("#id_%s")
                 .format({precision: 2,autofix:true})
@@ -272,7 +277,7 @@ class extSelect(forms.Select):
                         {
                         allowInput      : false,
                         initialValue    : unescape('%(value)s'),
-                        width           : 300,
+                        width           : %(width)s,
                         resultTemplate  : '<table class="extFlexboxTable"><tr><td>{name}</td></tr></table>',
                         paging          : false,
                         maxVisibleRows  : 15
@@ -280,7 +285,8 @@ class extSelect(forms.Select):
                     );
                     %(add_hidden_value)s
                 </script>
-            """ % ({'name':name,'results':results, 'total':total,'value':value,'add_hidden_value':add_hidden_value})
+            """ % ({'name':name,'results':results, 'total':total,'value':value,
+                    'add_hidden_value':add_hidden_value,'width':self.attrs.get('width',230)})
             return mark_safe(input + script)
         else :
             search_name = self.attrs['search']
@@ -311,7 +317,7 @@ class extSelect(forms.Select):
                     initialValue    : unescape('%(value_name)s'),
                     method          : 'POST',
                     watermark       : '%(watermark)s',
-                    width           : 300,
+                    width           : %(width)s,
                     resultTemplate  : '%(template)s',
                     paging          : {
                         pageSize    : 15,
@@ -343,7 +349,7 @@ class extSelect(forms.Select):
                     }
                 });
                 </script>
-            """ % ({'name':name,'object':model._meta,'value_name':value,'template':template,'value_name':str(_js_unicode(value_name)),
+            """ % ({'name':name,'object':model._meta,'value_name':value,'template':template,'value_name':str(_js_unicode(value_name)),'width':self.attrs.get('width', 230),
                     'watermark':u'Бичнэ үү!','display_names':display_names,'search_name':search_name,'add_hidden_value':add_hidden_value})
             return mark_safe(input + script)
 
@@ -396,7 +402,7 @@ class extModelSelect(forms.Select):
                 initialValue    : '%(value_name)s',
                 method          : 'POST',
                 watermark       : '%(watermark)s',
-                width           : 300,
+                width           : %(width)s,
                 resultTemplate  : '%(template)s',
                 paging          : {
                     pageSize    : 15,
@@ -428,7 +434,7 @@ class extModelSelect(forms.Select):
                 }
             });
             </script>
-        """ % ({'name':name,'object':model._meta,'value_name':value,'template':template,'value_name':value_name,
+        """ % ({'name':name,'object':model._meta,'value_name':value,'template':template,'value_name':value_name,'width':self.attrs.get('width',230),
                 'watermark':u'Бичнэ үү!','display_names':display_names,'search_name':search_name,'add_hidden_value':add_hidden_value})
         return mark_safe(input + script)
 
