@@ -150,7 +150,7 @@ class JobCvEducationForm(extForms.extModelForm):
                     search='name', display=('name',), cwidth=130)
     name = extForms.extCharField(label=u'Сургууль', max_length=64, widget=extForms.extTextInput({'style':'width:200px'}))
     occupation = extForms.extCharField(label=u'Мэргэжил', max_length=64, widget=extForms.extTextInput({'style':'width:200px'}))
-    meridian = extForms.extDecimalField(label=u'Голч дүн', max_digits=3, decimal_places=2, required=False)
+    meridian = extForms.extDecimalField(label=u'Голч дүн', max_digits=3, decimal_places=2, required=False, widget=extForms.extDecimalWidget({'style':'width:100px'}))
     
     class Meta:
         model = JobCvEducation
@@ -178,7 +178,7 @@ class JobCvLanguageForm(extForms.extModelForm):
         ('medium', u'Дунд'),
         ('low', u'Анхан шат')
     ]
-    period = extForms.extIntegerField(label=u'Үзсэн хугацаа', required=False, widget=extForms.extIntegerWidget({'width':'110px'}))
+    period = extForms.extIntegerField(label=u'Үзсэн хугацаа', required=False, widget=extForms.extIntegerWidget({'style':'width:110px'}))
     language = extForms.extModelChoiceField(label=u'Хэл', model=CommonLanguage, 
                     search='name', display=('name',), cwidth=130)
     understand = extForms.extCharField(label=u'Ярьсныг ойлгох', max_length=10, widget=extForms.extSelect({'width':120},choices=LANG_LEVEL_CHOICES), initial='medium')
@@ -213,10 +213,10 @@ class JobCvUsageForm(extForms.extModelForm):
 
 class JobCvWorkingForm(extForms.extModelForm):
     name = extForms.extCharField(label=u'Байгууллагын нэр', max_length=128, widget=extForms.extTextInput({'style':'width:160px'}))
-    address = extForms.extCharField(label=u'Хаяг', max_length=512, widget=extForms.extTextInput({'style':'width:200px'}))
+    address = extForms.extCharField(label=u'Хаяг', max_length=512, widget=extForms.extTextInput({'style':'width:180px'}))
     category = extForms.extModelChoiceField(label=u'Хэл', model=PartnerCategory,
-                    search='name', display=('name',), cwidth=160)
-    position = extForms.extCharField(label=u'Албан тушаал', max_length=128, widget=extForms.extTextInput({'style':'width:170px'}))
+                    search='name', display=('name',), cwidth=155)
+    position = extForms.extCharField(label=u'Албан тушаал', max_length=128, widget=extForms.extTextInput({'style':'width:150px'}))
     class Meta:
         model = JobCvWorking
         
@@ -234,9 +234,11 @@ class JobCvRelationForm(extForms.extModelForm):
         ('son', u'Хүү'),
         ('daughter', u'Охин')
     ]
-    reference = extForms.extCharField(label=u'Хамаарал', max_length=10, widget=extForms.extSelect({'width':120},choices=RELATION_REFERENCE_TYPE))
+    first_name = extForms.extCharField(label=u'Өөрийн нэр', max_length=64, widget=extForms.extTextInput({'style':'width:120px'}))
+    last_name = extForms.extCharField(label=u'Эцгийн нэр', max_length=64, widget=extForms.extTextInput({'style':'width:120px'}))
+    reference = extForms.extCharField(label=u'Хамаарал', max_length=10, widget=extForms.extSelect({'width':100},choices=RELATION_REFERENCE_TYPE))
     working = extForms.extCharField(label=u'Байгууллагын нэр', max_length=64, widget=extForms.extTextInput({'style':'width:190px'}), required=False)
-    position = extForms.extCharField(label=u'Албан тушаал', max_length=64, widget=extForms.extTextInput({'style':'width:190px'}), required=False)
+    position = extForms.extCharField(label=u'Албан тушаал', max_length=64, widget=extForms.extTextInput({'style':'width:140px'}), required=False)
     phone = extForms.extCharField(label=u'Утас', max_length=20, widget=extForms.extIntegerWidget({'style':'width:120px'}))
     
     class Meta:

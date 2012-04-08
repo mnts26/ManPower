@@ -77,7 +77,10 @@
 }
 
 .extFormTable tr.error input,
-.extFormTable tr.error textarea {
+.extFormTable tr.error textarea,
+.error_list .extTextInput,
+.error_list .ffb-input,
+.error_list .extTextArea {
 	background: #FFDDFF url(/extmedia/images/textinput_error.png) repeat-x scroll left top;
 	border-color: #BB9999 #BB9999 #DDBBBB;
 }

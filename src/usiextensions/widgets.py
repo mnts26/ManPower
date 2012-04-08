@@ -218,7 +218,7 @@ class extDecimalWidget(forms.TextInput) :
     def render(self, name, value, attrs=None) :
         if not value:
             value = ''
-        input = u'<input type="text" value="%s" name="%s" id="id_%s" class="extTextInput"/>' % (value, name, name)
+        input = u'<input type="text" value="%s" name="%s" id="id_%s" class="extTextInput" %s/>' % (value, name, name, flatatt(self.attrs or {}))
         script = u'''<script type="text/javascript">
             jQuery("#id_%s")
                 .format({precision: 2,autofix:true})

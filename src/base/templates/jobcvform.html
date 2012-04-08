@@ -49,6 +49,27 @@ div.cvform td {
 	padding: 3px 0px;
 }
 
+div.cvform table td.label {
+	text-align: right;
+	color: #4089F2;
+	padding-right: 7px;
+	font-family: sans-serif;
+	font-size: 10pt;
+	padding-left: 10px;
+}
+
+div.cvform table th {
+	color: #4089F2;
+	font-family: sans-serif;
+	font-size: 10pt;
+	font-weight: normal;
+}
+
+div.cvform table.box td,
+div.cvform table.grid td {
+	padding: 1px 2px;
+}
+
 
 </style>
 {% endblock %}
@@ -110,7 +131,7 @@ div.cvform td {
 					<th width="100px">Дугаар</th></tr>
 				{% for pf in phoneform.forms %}
 					<tr>
-						<td style="text-align:right">{{ forloop.counter }}</td>
+						<td style="text-align:center">{{ forloop.counter }}</td>
 						<td{% if pf.type.errors %} class="error_list"{% endif %} width="170px">{{ pf.type }}</td>
 						<td{% if pf.number.errors %} class="error_list"{% endif %}>{{ pf.number }}</td>
 					</tr>
@@ -124,7 +145,7 @@ div.cvform td {
 			{% for f in occupationform.management_form %} {{ f }} {% endfor %}
 			<table cellpadding="3" cellspacing="2" class="grid">
 				<tr><th width="10px" style="text-align:right">№</th>
-					<th width="150px">Төрөл</th>
+					<th width="130px">Төрөл</th>
 					<th width="200px">Сургууль</th>
 					<th width="150px">Хаана</th>
 					<th width="95px">Элссэн он</th>
@@ -134,7 +155,7 @@ div.cvform td {
 				</tr>
 				{% for pf in occupationform.forms %}
 					<tr>
-						<td style="text-align:right">{{ forloop.counter }}</td>
+						<td style="text-align:center">{{ forloop.counter }}</td>
 						<td{% if pf.type.errors %} class="error_list"{% endif %}>{{ pf.type }}</td>
 						<td{% if pf.name.errors %} class="error_list"{% endif %}>{{ pf.name }}</td>
 						<td{% if pf.country.errors %} class="error_list"{% endif %}>{{ pf.country }}</td>
@@ -161,7 +182,7 @@ div.cvform td {
 				</tr>
 				{% for pf in courseform.forms %}
 					<tr>
-						<td style="text-align:right">{{ forloop.counter }}</td>
+						<td style="text-align:center">{{ forloop.counter }}</td>
 						<td{% if pf.name.errors %} class="error_list"{% endif %}>{{ pf.name }}</td>
 						<td{% if pf.start_year.errors %} class="error_list"{% endif %}>{{ pf.start_year }}</td>
 						<td{% if pf.end_year.errors %} class="error_list"{% endif %}>{{ pf.end_year }}</td>
@@ -180,8 +201,8 @@ div.cvform td {
 			{% for f in languageform.management_form %} {{ f }} {% endfor %}
 			<table cellpadding="3" cellspacing="2" class="grid">
 				<tr><th width="10px" style="text-align:right">№</th>
-					<th width="*">Хэл</th>
-					<th width="120px">Үзсэн хугацаа(сар)</th>
+					<th width="150px">Хэл</th>
+					<th width="130px">Үзсэн хугацаа(сар)</th>
 					<th width="150px">Ярьсныг ойлгох</th>
 					<th width="150px">Өөрөө ярих</th>
 					<th width="150px">Уншиж ойлгох</th>
@@ -189,7 +210,7 @@ div.cvform td {
 				</tr>
 				{% for pf in languageform.forms %}
 					<tr>
-						<td style="text-align:right">{{ forloop.counter }}</td>
+						<td style="text-align:center">{{ forloop.counter }}</td>
 						<td{% if pf.language.errors %} class="error_list"{% endif %}>{{ pf.language }}</td>
 						<td{% if pf.period.errors %} class="error_list"{% endif %}>{{ pf.period }}</td>
 						<td{% if pf.understand.errors %} class="error_list"{% endif %}>{{ pf.understand }}</td>
@@ -219,7 +240,7 @@ div.cvform td {
 				</tr>
 				{% for pf in skillform.forms %}
 					<tr>
-						<td style="text-align:right">{{ forloop.counter }}</td>
+						<td style="text-align:center">{{ forloop.counter }}</td>
 						<td{% if pf.name.errors %} class="error_list"{% endif %}>{{ pf.name }}</td>
 						<td{% if pf.level.errors %} class="error_list"{% endif %}>{{ pf.level }}</td>
 					</tr>
@@ -233,7 +254,7 @@ div.cvform td {
 				</tr>
 				{% for pf in usageform.forms %}
 					<tr>
-						<td style="text-align:right">{{ forloop.counter }}</td>
+						<td style="text-align:center">{{ forloop.counter }}</td>
 						<td{% if pf.name.errors %} class="error_list"{% endif %}>{{ pf.name }}</td>
 						<td{% if pf.level.errors %} class="error_list"{% endif %}>{{ pf.level }}</td>
 					</tr>
@@ -249,16 +270,16 @@ div.cvform td {
 			<table cellpadding="3" cellspacing="2" class="grid">
 				<tr><th width="15px" style="text-align:right">№</th>
 					<th width="180px">Байгууллага</th>
-					<th width="235px">Салбар</th>
+					<th width="240px">Салбар</th>
 					<th width="80px">Орсон огноо</th>
 					<th width="80px">Гарсан огноо</th>
-					<th width="180px">Албан тушаал</th>
-					<th width="220px">Хаяг</th>
+					<th width="160px">Албан тушаал</th>
+					<th width="190px">Хаяг</th>
 					<th width="200px">Гарсан шалтгаан</th>
 				</tr>
 				{% for pf in workingform.forms %}
 					<tr>
-						<td style="text-align:right">{{ forloop.counter }}</td>
+						<td style="text-align:center">{{ forloop.counter }}</td>
 						<td{% if pf.name.errors %} class="error_list"{% endif %}>{{ pf.name }}</td>
 						<td{% if pf.category.errors %} class="error_list"{% endif %}>{{ pf.category }}</td>
 						<td{% if pf.date_start.errors %} class="error_list"{% endif %}>{{ pf.date_start }}</td>
@@ -281,13 +302,13 @@ div.cvform td {
 				<th width="100px">Эцгийн нэр</th>
 				<th width="100px">Өөрийн нэр</th>
 				<th width="200px">Ажлын газар</th>
-				<th width="200px">Албан тушаал</th>
+				<th width="145px">Албан тушаал</th>
 				<th width="100px">Утас</th>
 				<th width="120px">И-мэйл</th>
 			</tr>
 			{% for pf in relationform.forms %}
 				<tr>
-					<td style="text-align:right">{{ forloop.counter }}</td>
+					<td style="text-align:center">{{ forloop.counter }}</td>
 					<td{% if pf.reference.errors %} class="error_list"{% endif %}>{{ pf.reference }}</td>
 					<td{% if pf.last_name.errors %} class="error_list"{% endif %}>{{ pf.last_name }}</td>
 					<td{% if pf.first_name.errors %} class="error_list"{% endif %}>{{ pf.first_name }}</td>
