@@ -9,10 +9,10 @@ class PartnerCategoryAdmin(admin.ModelAdmin):
 admin.site.register(PartnerCategory, PartnerCategoryAdmin)
 
 class PartnerAdmin(admin.ModelAdmin):
-    fieldsets = ((u'Ерөнхий', {'fields':('name','category_id')}),
+    fieldsets = ((u'Ерөнхий', {'fields':('name','category_id','poster','logo','website')}),
                  (u'Нэмэлт', {'fields':('description','started_date',)}),
                  (u'Портал хандалт', {'fields':('user',)}))
-    list_display = ('name','category_id','user')
+    list_display = ('admin_image','name','category_id','user')
     search_fields = ('name','category_id','user')
 admin.site.register(Partner, PartnerAdmin)
 

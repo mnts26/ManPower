@@ -12,7 +12,19 @@ from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from django.forms.models import inlineformset_factory
+from base.models import *
+from common.models import *
+from base.forms import *
+import smtplib
 
+
+# PDF RENDER
+import cStringIO as StringIO
+#import ho.pisa as pisa
+from django.template.loader import get_template
+from django.template import Context
+from django.http import HttpResponse
+from cgi import escape
 
 def index(request):
     return render_to_response('index.html', locals(), 
@@ -131,19 +143,80 @@ def myjobs(request):
         return HttpResponseRedirect('/')
 
 @login_required
-def addjob(request):
-    partners = Partner.objects.filter(pk=request.user.pk)
+def addjobs(request):
+    partners = Partner.objects.filter(pk=request.user.pk)   
     partner = partners[0]
     form = JobOrderForm()
-    if request.POST:
-        print '1'
-        form = JobOrderForm(request.POST)
-        if form.is_valid():
-            print '3'
-            form.save(user=request.user)
-            print '4'
-            return HttpResponseRedirect('/baitsaagch/dugnelt')
+    if request.method == 'POST':
+       form = JobOrderForm(request.POST)
+       if form.is_valid():
+           job = form.save(commit=False)
+           job.partner = partner
+           job.save()
+           return HttpResponseRedirect('/base/addjobs')
     else :
-        return render_to_response('addjobs.html', locals(),
+        form = JobOrderForm()
+    return render_to_response('new/addjobs.html', locals(),
+                              context_instance=RequestContext(request))
+def contactable (request):
+    print 'ASDASDASDASDS'
+    
+def aboutus(request):
+    print 'HALSDM<L:ASMD KA:LSM DKLASM '
+    return render_to_response('new/aboutus.html', locals(),
+                              context_instance=RequestContext(request))
+
+def lessons(request):
+    return render_to_response('new/lessons.html', locals(),
+                              context_instance=RequestContext(request))
+def jobs(request):
+    return render_to_response('new/jobs.html', locals(),
+                              context_instance=RequestContext(request))
+def events(request):
+    return render_to_response('new/events.html', locals(),
+                              context_instance=RequestContext(request))
+
+def partners (request):
+    partners = Partner.objects.all()
+    for partner in partners: 
+        print "TEST" , partner.logo 
+    return render_to_response('new/partners.html', locals(),
                               context_instance=RequestContext(request))
     
+def sendmail (request):
+    
+    to = 'xac_tsolmon@yahoo.com'
+    gmail_user = 'manpowermn@gmail.com'
+    gmail_pwd ='gino_1203'
+    smtpserver = smtplib.SMTP("smtp.gmail.com",587)
+    smtpserver.ehlo()
+    smtpserver.starttls()
+    smtpserver.ehlo
+    smtpserver.login(gmail_user, gmail_pwd)
+    header = 'To:' + to + '\n' + 'From: ' + gmail_user + '\n' + 'Subject:Welcome to ManPower \n'
+    print header
+    msg = header + '\n this is test msg from manpower.mn \n\n'
+    smtpserver.sendmail(gmail_user, to, msg)
+    print 'done!'
+    smtpserver.close()
+
+def pdfview(request):
+    results = "Some Text"
+    return render_to_pdf(
+            'new/pdf_template.html',
+            {
+                'pagesize':'A4',
+                'mylist': results,
+            }
+        )
+
+def render_to_pdf(template_src, context_dict):
+    template = get_template(template_src)
+    context = Context(context_dict)
+    html  = template.render(context)
+    result = StringIO.StringIO()
+#    pdf = pisa.pisaDocument(StringIO.StringIO(html.encode("ISO-8859-1")), result)
+#    if not pdf.err:
+#        return HttpResponse(result.getvalue(), mimetype='application/pdf')
+    return HttpResponse('We had some errors<pre>%s</pre>' % escape(html))
+        

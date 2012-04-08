@@ -178,7 +178,7 @@ class JobCvLanguageForm(extForms.extModelForm):
         ('medium', u'Дунд'),
         ('low', u'Анхан шат')
     ]
-    period = extForms.extIntegerField(label=u'Үзсэн хугацаа', required=False)
+    period = extForms.extIntegerField(label=u'Үзсэн хугацаа', required=False, widget=extForms.extIntegerWidget({'width':'110px'}))
     language = extForms.extModelChoiceField(label=u'Хэл', model=CommonLanguage, 
                     search='name', display=('name',), cwidth=130)
     understand = extForms.extCharField(label=u'Ярьсныг ойлгох', max_length=10, widget=extForms.extSelect({'width':120},choices=LANG_LEVEL_CHOICES), initial='medium')

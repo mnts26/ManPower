@@ -1,5 +1,4 @@
 {% extends "main.html" %}
-{% load basetags %}
 
 {% block title %}Хайлт: {{ categ.name }}{% endblock %}
 
@@ -8,38 +7,37 @@
 {% endblock %}
 
 {% block content %}
+
+<div id="topstory">
 <div class="in">
     <p id="breadcrumbs">Та энд байна: <a href="/"><strong>Нүүр</strong></a> {{ categ.path|safe }}{% if order_id %}<span>/</span> <a href="javascript:void(0)">{{ job_name }}</a>{% endif %}</p>
 </div>
-
-<h2 class="title-01">{{ categ.name }} ангилалын нээлттэй ажлын байрууд</h2>
-<div class="in">
+<h3>{{ categ.name }} ангилалын нээлттэй ажлын байрууд</h2>
 {% if job_list %}
 {% for job in job_list %}
-	<div class="box">
-        <div id="topstory-img"><img src="tmp/200x150.gif" alt="" /></div>
-        <div id="topstory-txt">
-            <h3>Байгууллага: <a href="#">{{ job.partner.name }}</a></h3>
-            
-            <p id="topstory-info">Ангилал: <strong>{{ job.category.name }}</strong> &nbsp;&nbsp;&nbsp; 
-                Зэрэглэл: <strong>{{ job.level.name }}</strong></p>
-            
-            <p class="nomb">Ажлын байр: <strong>{{ job.name }}</strong> &nbsp;&nbsp;&nbsp;</p>
-            {% if order_id %}
-            <p class="nomb"><strong>Тайлбар:</strong> {{ order.description|safe }} <br/> <strong>Тавигдах шаардлага:</strong> {{ order.requirement|safe }}</p>
-            <p class="nomb">Анкет авах эцсийн хугацаа: <strong>{{ order.deadline|date:"Y-m-d" }}</strong></p>
-            <p class="nomb t-right"><a href="/base/jobform/{{ job.id }}" class="more">Анкет бөглөх</a></p>
-            {% else %}
-            <p class="nomb t-right"><a href="/base/jobdetail/{{ job.id }}" class="more">Дэлгэрэнгүй..</a></p>
-            {% endif %}
-        </div> <!-- /topstory-txt -->
+    <div id="topstory-title">
+        <h2><a href="/base/jobdetail/{{ job.id }}">{{ job.partner.name }}</a></h2>
+        <p class="date">
+            {{ job.create_date|date:"Y.m.d" }} &nbsp;&ndash;&nbsp; 
+            Ангилал: <a href="/base/joblist/{{ job.category.id }}">{{ job.category.name }}</a> &nbsp;&ndash;&nbsp;
+            Зэрэглэл: <strong>{{ job.level.name }}</strong> &nbsp;&ndash;&nbsp;
+            <a href="/base/jobform/{{ job.id }}">Анкет бөглөх</a> 
+        </p>
     </div>
-    <br/>
+    <div id="topstory-perex">
+        <p><img src="{{ job.partner.logo }}" width="200" height="150" alt="" class="f-left" />
+            <strong>{{ job.name }}</strong> <br/>
+            <strong>Тайлбар: </strong>{{ order.description|safe }}<br/>
+            <strong>Тавигдах шаардлага:</strong>{{ order.requirement|safe }}<br/>
+            Анкет авах эцсийн хугацаа: <strong>{{ order.deadline|date:"Y-m-d" }}</strong>
+            </p>
+        <p class="nomb t-right"><a href="/base/jobform/{{ job.id }}" class="more">Анкет бөглөх..</a></p>
+    </div>
+    <hr class="noscreen" />
 {% endfor %}
 
 {% else %}
 <p class="notify">Одоогоор хайлтанд тохирох ажлын байр алга!</p>
 {% endif %}
 </div>
-
 {% endblock %}

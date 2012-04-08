@@ -1,0 +1,62 @@
+{% extends "new/index.html" %}
+
+
+{% block title %}Миний ажлын байрууд{% endblock %}
+
+{% block body %}
+{% endblock %}
+
+{% block content %}
+<div id="topstory">
+            <div id="topstory-title">
+                <h2><a href="#">Миний ажлын байр</a></h2>
+            </div> <!-- /topstory-title -->
+            
+            <div id="topstory-perex">
+        		{% if myjobs %}
+        		
+        			<p> Одоогоор <a href="#">({{ myjobs.count}}) </a></p>
+        		{% else %}
+        			<p> Та одоогоор ажлын байр оруулаагүй байна.</p> 
+        		{% endif %}
+		
+         	</div> <!-- /topstory-perex -->
+ </div>           
+{% endblock %}
+
+
+
+
+
+ {% block leftside%}
+            <div id="aside" style="float:right;margin-top: 0px;padding-top: 0px;">
+                <div>
+	                <h4 class="hx-style01"><span>Миний цэс</span></h4>
+	                <ul class="ul-list box">
+	                    <li><a href="/base/myjobs">Миний ажлын байрууд</a></li>
+	                    <li><a href="/base/addjobs">Ажлын байр нэмэх</a></li>
+	                </ul>
+                </div>
+                
+                 <div>
+	                <h4 class="hx-style01"><span>Сүүлд нэмэгдсэн ажлын байр</span></h4>
+	                <ul class="ul-list box">
+	                    <li><a href="#">Lorem ipsum dolor sit amet</a><br /><span class="smaller low">(Monday, 01. 01. 08 &ndash; <a href="#">Lorem ipsum</a> &ndash; <a href="#">15 comments</a>)</span></li>
+	                    <li><a href="#">Consectetuer adipiscing elit</a><br /><span class="smaller low">(Monday, 01. 01. 08 &ndash; <a href="#">Lorem ipsum</a> &ndash; <a href="#">17 comments</a>)</span></li>
+	                    <li><a href="#">Maecenas accumsan</a><br /><span class="smaller low">(Monday, 01. 01. 08 &ndash; <a href="#">Lorem ipsum</a> &ndash; <a href="#">3 comments</a>)</span></li>
+	                    <li><a href="#">Pellentesque mattis nib lorem</a><br /><span class="smaller low">(Monday, 01. 01. 08 &ndash; <a href="#">Lorem ipsum</a> &ndash; <a href="#">0 comments</a>)</span></li>
+	                </ul>
+	                <p class="t-center nom"><a href="#" class="ico-more">More articles</a></p>
+                </div>
+                    <div>
+	                <h4 class="hx-style01"><span>Сүүлд нэмэгдсэн ажлын байр</span></h4>
+	                <ul class="ul-list box">
+	                    <li><a href="#">Lorem ipsum dolor sit amet</a><br /><span class="smaller low">(Monday, 01. 01. 08 &ndash; <a href="#">Lorem ipsum</a> &ndash; <a href="#">15 comments</a>)</span></li>
+	                    <li><a href="#">Consectetuer adipiscing elit</a><br /><span class="smaller low">(Monday, 01. 01. 08 &ndash; <a href="#">Lorem ipsum</a> &ndash; <a href="#">17 comments</a>)</span></li>
+	                    <li><a href="#">Maecenas accumsan</a><br /><span class="smaller low">(Monday, 01. 01. 08 &ndash; <a href="#">Lorem ipsum</a> &ndash; <a href="#">3 comments</a>)</span></li>
+	                    <li><a href="#">Pellentesque mattis nib lorem</a><br /><span class="smaller low">(Monday, 01. 01. 08 &ndash; <a href="#">Lorem ipsum</a> &ndash; <a href="#">0 comments</a>)</span></li>
+	                </ul>
+	                <p class="t-center nom"><a href="#" class="ico-more">More articles</a></p>
+                	</div>
+            </div> <!-- /aside -->
+           {% endblock %}

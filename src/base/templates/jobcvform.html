@@ -44,6 +44,12 @@ div.cvform h4 {
 	outline: 1px solid #909090;
 	color: #ffffff;
 }
+
+div.cvform td {
+	padding: 3px 0px;
+}
+
+
 </style>
 {% endblock %}
 
@@ -174,8 +180,8 @@ div.cvform h4 {
 			{% for f in languageform.management_form %} {{ f }} {% endfor %}
 			<table cellpadding="3" cellspacing="2" class="grid">
 				<tr><th width="10px" style="text-align:right">№</th>
-					<th width="150px">Хэл</th>
-					<th width="120px">Үзсэн <br/> хугацаа(сар)</th>
+					<th width="*">Хэл</th>
+					<th width="120px">Үзсэн хугацаа(сар)</th>
 					<th width="150px">Ярьсныг ойлгох</th>
 					<th width="150px">Өөрөө ярих</th>
 					<th width="150px">Уншиж ойлгох</th>

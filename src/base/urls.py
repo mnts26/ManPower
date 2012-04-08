@@ -20,8 +20,18 @@ urlpatterns = patterns('',
     url(r'^joblist/(?P<categ_id>.*)$', 'base.views.joblist'),
     url(r'^jobdetail/(?P<order_id>.*)$', 'base.views.jobdetail'),
     url(r'^jobform/(?P<order_id>.*)$', 'base.views.jobform'),
+    url(r'^addjobs$', 'base.views.addjobs'),
+    
+    url(r'^aboutus', 'base.views.aboutus'),
+    url(r'^jobs', 'base.views.jobs'),
+    url(r'^lessons', 'base.views.lessons'),
+    url(r'^events', 'base.views.events'),
+    url(r'^partners', 'base.views.partners'),
     url(r'^myjobs$', 'base.views.myjobs'),
-    url(r'^addjobs$', 'base.views.addjob'),
+    url(r'^contactable', 'base.views.contactable'),
+    url(r'^sendmail', 'base.views.sendmail'),
+    url(r'^pdfview', 'base.views.pdfview'),
+    
     
     
 )

@@ -21,14 +21,24 @@ class PartnerCategory(models.Model):
 class Partner(models.Model):
     name = models.CharField(u'Нэр', max_length=128)
     description = models.TextField(u'Тайлбар', blank=True, null=True)
-    category_id = models.ForeignKey('PartnerCategory', verbose_name=u'Ангилал',
-                related_name='partner_set')
+    logo = models.ImageField(upload_to='partners/%Y/%m/%d', null=True, blank=True)
+    poster = models.CharField(u'Уриа' , max_length=256 ,null=True, blank=True)
+    website = models.CharField(u'Вэб хуудас' , max_length=256 ,null=True, blank=True)
+    category_id = models.ForeignKey('PartnerCategory', verbose_name=u'Ангилал',related_name='partner_set')
     started_date = models.DateField(u'Байгуулагдсан он', blank=True, null=True)
     user = models.ForeignKey(User, verbose_name=u'Хандах эрх', blank=True, null=True)
-    
     class Meta:
         verbose_name_plural = u"Харилцагчид"
         verbose_name = u"Харилцагч"
+
+    def admin_image(self):
+        if self.logo:
+            return u'<img src="%s" />' % self.logo
+        else:
+            return u'(Зураггүй)'
+        admin_image.short_description = 'Thumb'
+        admin_image.allow_tags = True
+
 
     def __unicode__(self):
         return self.name
@@ -39,10 +49,12 @@ class JobCategory(models.Model):
                 related_name='child_set', blank=True, null=True)
     description = models.TextField(u'Тайлбар', blank=True, null=True)
     
-    def menu_html(self, parent=True):
+    def menu_html(self, parent=True ):
+        count_job = JobOrder.objects.filter(category = self.pk ) 
+        a = count_job.count()
         html = u''
         if parent:
-            html += u'<a href="/base/joblist/%s" class="parent">%s</a>\n' % (self.id, self.name)
+            html += u'<a href="/base/joblist/%s" class="parent">%s  (%d) </a>\n' % (self.id, self.name  , a)
             html += u'<span class="closedmenu"></span>\n'
             html += u'<div style="display: block">\n'
             html += u'<ul>\n'

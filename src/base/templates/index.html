@@ -1,10 +1,99 @@
 {% extends "main.html" %}
 
-{% block title %}Нүүр{% endblock %}
 
+{% block script %}
+<script type="text/javascript">
+$(document).ready(function() {
 
-{% block body %}
+//Custom settings
+var style_in = 'easeOutBounce';
+var style_out = 'jswing';
+var speed_in = 1000;
+var speed_out = 300;	
 
+//Calculation for corners
+var neg = Math.round($('.qitem').width() / 2) * (-1);	
+var pos = neg * (-1);	
+var out = pos * 2;
+
+$('.qitem').each(function () {
+
+	url = $(this).find('a').attr('href');
+	img = $(this).find('img').attr('src');
+	alt = $(this).find('img').attr('img');
+	
+	$('img', this).remove();
+	$(this).append('<div class="topLeft"></div><div class="topRight"></div><div class="bottomLeft"></div><div class="bottomRight"></div>');
+	$(this).children('div').css('background-image','url('+ img + ')');
+
+	$(this).find('div.topLeft').css({top:0, left:0, width:pos , height:pos});	
+	$(this).find('div.topRight').css({top:0, left:pos, width:pos , height:pos});	
+	$(this).find('div.bottomLeft').css({bottom:0, left:0, width:pos , height:pos});	
+	$(this).find('div.bottomRight').css({bottom:0, left:pos, width:pos , height:pos});	
+
+}).hover(function () {
+
+	$(this).find('div.topLeft').stop(false, true).animate({top:neg, left:neg}, {duration:speed_out, easing:style_out});	
+	$(this).find('div.topRight').stop(false, true).animate({top:neg, left:out}, {duration:speed_out, easing:style_out});	
+	$(this).find('div.bottomLeft').stop(false, true).animate({bottom:neg, left:neg}, {duration:speed_out, easing:style_out});	
+	$(this).find('div.bottomRight').stop(false, true).animate({bottom:neg, left:out}, {duration:speed_out, easing:style_out});	
+			
+},
+
+function () {
+
+	$(this).find('div.topLeft').stop(false, true).animate({top:0, left:0}, {duration:speed_in, easing:style_in});	
+	$(this).find('div.topRight').stop(false, true).animate({top:0, left:pos}, {duration:speed_in, easing:style_in});	
+	$(this).find('div.bottomLeft').stop(false, true).animate({bottom:0, left:0}, {duration:speed_in, easing:style_in});	
+	$(this).find('div.bottomRight').stop(false, true).animate({bottom:0, left:pos}, {duration:speed_in, easing:style_in});	
+
+}).click (function () {
+	window.location = $(this).find('a').attr('href');	
+});
+	
+	
+
+});
+</script>
+{% endblock %}
+{% block content %}
+
+<div id="topstory">
+    <div id="topstory-title">
+        <h2><a href="#">Мэдээ мэдээлэл</a></h2>
+        <p class="date">
+            Monday, 01. 01. 08 &nbsp;&ndash;&nbsp; 
+            Category: <a href="#">Lorem ipsum</a> &nbsp;&ndash;&nbsp;
+            <a href="#">18 comments</a> 
+        </p>
+    </div> <!-- /topstory-title -->
+    
+    <div id="topstory-perex">
+        <p><img src="{{ STATIC_URL }}/images/image.gif" width="200" height="150" alt="" class="f-left" />
+        	Нэр томъёоны хувьд зөрүүтэй зүйл яриад байх шиг байгаа юм. Өмгөө­лөгч нар "ажил хаяна" гэдэг нь өөрсдийнхөө
+         	өм­гөөлж байгаа, өөрсдөөр нь дамжуулж эрх ашгаа хамгаалж байгаа хүмүүст үйлчлэхгүй гэж хэлж бай­гаа утга.
+          	Тийм утгаар асуу­­дал тавигдаж байгаа бол энэ нь Өмгөө­лөгч­дийн холбооных нь ёс зүйн дүрмээр зохицуу­лагдах зүйл.
+           	Харил­цагч­дын­хаа эрх ашгийг шүү­хэд төлөөлж, хамгаалах үүрэг бүхий этгээд "төлөө­лөхгүй" гэж хэлэх юм бол харилцагч нь
+            Өмгөө­лөгч­дийн холбоонд гомдол гаргаж, тэдний сахилгын хороогоор асуудлыг ярь­даг. </p>
+    </div> <!-- /topstory-perex -->
+     <hr class="noscreen" />
+    <div id="topstory-title">
+        <h2><a href="#">Мэдээ мэдээлэл</a></h2>
+        <p class="date">
+            Monday, 01. 01. 08 &nbsp;&ndash;&nbsp; 
+            Category: <a href="#">Lorem ipsum</a> &nbsp;&ndash;&nbsp;
+            <a href="#">18 comments</a> 
+        </p>
+ 			</div> <!-- /topstory-title -->
+  <div id="topstory-perex">
+        <p><img src="{{ STATIC_URL }}/images/image.gif" width="200" height="150" alt="" class="f-left" />
+        	Нэр томъёоны хувьд зөрүүтэй зүйл яриад байх шиг байгаа юм. Өмгөө­лөгч нар "ажил хаяна" гэдэг нь өөрсдийнхөө
+         	өм­гөөлж байгаа, өөрсдөөр нь дамжуулж эрх ашгаа хамгаалж байгаа хүмүүст үйлчлэхгүй гэж хэлж бай­гаа утга.
+          	Тийм утгаар асуу­­дал тавигдаж байгаа бол энэ нь Өмгөө­лөгч­дийн холбооных нь ёс зүйн дүрмээр зохицуу­лагдах зүйл.
+           	Харил­цагч­дын­хаа эрх ашгийг шүү­хэд төлөөлж, хамгаалах үүрэг бүхий этгээд "төлөө­лөхгүй" гэж хэлэх юм бол харилцагч нь
+            Өмгөө­лөгч­дийн холбоонд гомдол гаргаж, тэдний сахилгын хороогоор асуудлыг ярь­даг. </p>
+    </div> <!-- /topstory-perex -->
+</div>
 {% endblock %}
 
 

@@ -7,7 +7,7 @@
 	border-style: solid;
 	border-width: 1px;
 	color: #666666;
-	font-size: 12pt;
+	font-size: 10pt;
 	padding: 2px;
 }
 /* Color of watermark, if present */
@@ -17,18 +17,18 @@
 /* Drop-down arrow, with sprited image */
 .ffb-arrow {
 	float:left;
-	width:25px;
-	height:25px;
+	width:21px;
+	height:21px;
 	background-image:url(../images/sel_silver.gif);
 }
 .ffb-arrow.out { /* css sprite technique */
 	background-position:0;
 }
 .ffb-arrow.over { /* css sprite technique */
-	background-position:-25px 0;
+	background-position:-21px 0;
 }
 .ffb-arrow.active { /* css sprite technique */
-	background-position:-50px 0;
+	background-position:-42px 0;
 }
 .ffb-no-results 
 {

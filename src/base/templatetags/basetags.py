@@ -12,6 +12,17 @@ register = Library()
 
 register = template.Library()
 
+
+
+@register.tag(name="partners")
+def partners(parser, token):
+    html = ""
+    partners = Partners.objects.all()
+    
+
+    return htlml 
+
+
 @register.tag(name="job_category_menu")
 def job_category_menu(parser, token):
     try:
@@ -26,10 +37,10 @@ class JobCategoryMenuNode(template.Node):
         pass
     def render(self, context):
         category_list = JobCategory.objects.filter(parent=None)
-        html = u'<ul id="subnav">\n'
+        html = u'<ul class="ul-list box">\n'
         for categ in category_list:
-            html += u'<li>\n'
-            html += categ.menu_html()
+            html += u'<li>\n' 
+            html += categ.menu_html()#+ u'('+ + u')' 
             html += u'</li>\n'
         html += u'</ul>\n'
         return mark_safe(html)
@@ -265,8 +276,8 @@ class RenderErrorNode(Node):
                          u'The submitted file is empty.': u'Таны оруулсан файл хоосон байна.'}
         
         css = '<style type="text/css">'
-        css += 'ul.error_list label { color:#CC4422; font-size: 12px; font-weight: bold; }'
-        css += 'ul.error_list { color: #CC2222; font-size: 12px; font-weight: normal; list-style-type: none; padding-left:20px}'
+        css += '.error_list label { color:#CC4422; font-size: 12px; font-weight: bold; }'
+        css += '.error_list { color: #CC2222; font-size: 12px; font-weight: normal; }'
         css += '</style>'
         html = '<ul class="error_list">'
         used_error = []
@@ -385,3 +396,4 @@ def staff_name(staff_id):
     return u''
 
 register.filter('staff_name', staff_name)
+

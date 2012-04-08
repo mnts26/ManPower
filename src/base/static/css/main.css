@@ -1,569 +1,496 @@
-/* CSS Document */
+/* ----------------------------------------------------------------------------------------------------------
+
+    This website template was downloaded from http://www.nuviotemplates.com - visit us for more templates
+    
+    Structure:
+    display; position; float; z-index; overflow; width; height; margin; padding; border; background; align; font;
+
+    Content:
+    
+        1) HTML tags, reset
+        2) Universal styles (display, float, margin, text-align...)
+        3) Layout
+        4) Page: Home
+        Z) Others
+        
+---------------------------------------------------------------------------------------------------------- */
+	/* ----------------------------------------------------------------------------------------------------------
+1) HTML tags, reset
+---------------------------------------------------------------------------------------------------------- */
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body,div,span,p,a,img,ul,ol,li,caption,table,thead,tbody,tfoot,tr,th,td,form,fieldset,legend,label,dl,dt,dd,blockquote,applet,object,h1,h2,h3,h4,h5
+	{
+	border: 0;
+}
+
 body {
-	padding: 0px;
-	margin: 0px;
-	background: url(../images/main-bg.gif) 0 0 repeat-x #fff;
-	color: #5F7A77;
-	font: 13px/ 19px Arial, Helvetica, sans-serif;
-}
-
-div,p,ul,h2,h3,h4,h5,img {
-	padding: 0px;
-	margin: 0px;
-}
-
-ul {
-	list-style-type: none;
-}
-
-/*----MAIN PANEL----*/
-#mainPan {
-	width: 878px;
-	position: relative;
-	margin: 0 auto;
-}
-
-/*----TOP PANEL----*/
-#topPan {
-	width: 878px;
-	height: 65px;
-	background: url(..//images/topbg.jpg) 0 0 no-repeat #fff;
-	color: #828282;
-	position: relative;
-	margin: 0 auto;
-}
-
-#topPan img.logo {
-	width: 156px;
-	height: 31px;
-	position: absolute;
-	top: 12px;
-	left: 335px;
-}
-
-#topPan p.caption {
-	width: 300px;
-	background: #fff;
-	color: #828282;
-	position: absolute;
-	top: 43px;
-	left: 335px;
-}
-
-#topcontactPan {
-	width: 181px;
-	height: 36px;
-	background: url(../images/icon1.jpg) 68px 0px no-repeat;
-	position: absolute;
-	top: 11px;
-	left: 567px;
-	padding: 7px 0 0;
-}
-
-#topcontactPan p.callus {
-	width: 63px;
-	height: 17px;
-	display: block;
-	background: #DDC40C;
-	color: #fff;
-	font: 14px/ 17px "Trebuchet MS", Arial, Helvetica, sans-serif;
-	font-weight: bold;
-	text-transform: uppercase;
+	padding: 20px 0;
+	font: 0.8em/ 1.5 "arial", serif;
 	text-align: center;
 }
 
-#topcontactPan p.tollfree {
-	width: 63px;
-	height: 20px;
-	display: block;
-	background: #fff;
-	color: #A99607;
-	font: 11px/ 20px "Trebuchet MS", Arial, Helvetica, sans-serif;
-	font-weight: bold;
-	text-transform: uppercase;
+a {
+	text-decoration: none;
+}
+
+h1,h2,h3,h4,h5,h6 {
+	margin: 15px 0 10px 0;
+}
+
+h1 {
+	font-size: 260%;
+	font-weight: normal;
+	letter-spacing: -1px;
+}
+
+h2 {
+	font-size: 160%;
+	font-weight: normal;
+}
+
+h3 {
+	font-size: 140%;
+	font-weight: normal;
+}
+
+h4,h5 {
+	font-size: 100%;
+}
+
+p,table,ul,ol,dl,fieldset {
+	margin: 15px 0;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+	font-size: 100%;
+}
+
+th {
 	text-align: center;
+	font-weight: bold;
 }
 
-#topcontactPan p.phoneno {
-	width: 88px;
-	height: 28px;
-	display: block;
+th,td {
+	padding: 3px 7px;
+}
+
+ul,ol {
+	margin-left: 30px;
+}
+
+ul ul,ol ol {
+	margin: 0;
+	margin-left: 20px;
+}
+
+ol {
+	list-style-type: decimal;
+}
+
+li {
+	display: list-item;
+}
+
+dt {
+	font-weight: bold;
+}
+
+dd {
+	margin-left: 30px;
+}
+
+fieldset {
+	position: relative;
+	padding: 10px;
+}
+
+legend {
 	position: absolute;
-	top: 7px;
-	left: 91px;
-	background: #fff;
-	color: #00473E;
-	border: 1px solid #A2C1C0;
-	font-size: 11px;
-	line-height: 14px;
-	text-align: center;
-}
-
-/*----/TOP PANEL----*/ /*----HEADER PANEL----*/
-#headerPan {
-	width: 786px;
-	height: 153px;
-	background: url(../images/header.jpg) 0 0 no-repeat;
-	position: relative;
-	margin: 0 auto;
-	padding: 11px 0 0 92px;
-}
-
-#headerPan ul.leftmenu {
-	width: 87px;
-}
-
-#headerPan ul.leftmenu li {
-	width: 87px;
-	height: 22px;
-	border-bottom: 1px dashed #AECCCA;
-}
-
-#headerPan ul.leftmenu li a {
-	width: 72px;
-	height: 22px;
-	display: block;
-	background: url(../images/bullet-normal.gif) 0 7px no-repeat #fff;
-	color: #305E5C;
-	line-height: 22px;
-	text-decoration: none;
-	padding: 0 0 0 15px;
-}
-
-#headerPan ul.leftmenu li a:hover {
-	background: url(../images/bullet-hover.gif) 0 7px no-repeat #fff;
-	color: #305E5C;
-	line-height: 22px;
-	text-decoration: none;
-	padding: 0 0 0 15px;
-}
-
-#headerPan ul.leftmenu li.Solutions {
-	width: 72px;
-	height: 22px;
-	display: block;
-	background: url(../images/bullet-hover.gif) 0 7px no-repeat #fff;
-	color: #305E5C;
-	line-height: 22px;
-	text-decoration: none;
-	padding: 0 0 0 15px;
-}
-
-#headerPan ul.leftmenu li.clients {
-	width: 87px;
-	height: 22px;
-	border-bottom: none;
-}
-
-#headerPan ul.botton {
-	width: 150px;
-	height: 45px;
-	position: absolute;
-	top: 118px;
-	left: 350px;
-}
-
-#headerPan ul.botton li {
-	float: left;
-	height: 45px;
-}
-
-#headerPan ul.botton li.home a {
-	width: 42px;
-	height: 45px;
-	display: block;
-	background: url(../images/home-normal.gif) 0 0 no-repeat;
-	text-indent: -200000px;
-	margin: 0 12px 0 0;
-}
-
-#headerPan ul.botton li.home a:hover {
-	background: url(../images/home-hover.gif) 0 0 no-repeat;
-}
-
-#headerPan ul.botton li.aboutus a {
-	width: 42px;
-	height: 45px;
-	display: block;
-	background: url(../images/aboutus-normal.gif) 0 0 no-repeat;
-	text-indent: -200000px;
-	margin: 0 12px 0 0;
-}
-
-#headerPan ul.botton li.aboutus a:hover {
-	background: url(../images/aboutus-hover.gif) 0 0 no-repeat;
-}
-
-#headerPan ul.botton li.contact a {
-	width: 42px;
-	height: 45px;
-	display: block;
-	background: url(../images/contact-normal.gif) 0 0 no-repeat;
-	text-indent: -200000px;
-	margin: 0px;
-}
-
-#headerPan ul.botton li.contact a:hover {
-	background: url(../images/contact-hover.gif) 0 0 no-repeat;
-}
-
-/*----/HEADER PANEL----*/ /*----BODY PANEL----*/
-#bodyPan {
-	width: 786px;
-	background: url(../images/bodybg.gif) 0 0 no-repeat;
-	position: relative;
-	margin: 0 auto;
-	padding: 22px 0 0 92px;
-}
-
-/*----Body Left Panel----*/
-#leftPan {
-	width: 214px;
-	float: left;
-}
-
-#leftPan h2 {
-	width: 214px;
-	height: 34px;
-	background: #fff;
-	color: #5F7A77;
-	font-size: 18px;
-	line-height: 34px;
-}
-
-#leftPan ul {
-	width: 214px;
-}
-
-#leftPan ul li {
-	width: 214px;
-	/*height: 24px;*/
-}
-
-
-
-/*----/Body Left Panel----*/ /*----Body Right Panel----*/
-#rightPan {
-	width: 511px;
-	min-height: 220px;
-	float: left;
-	border-left: 1px solid #C8E8E2;
-	margin: 28px 0 0;
-	padding: 0 30px;
-}
-
-#rightPan p {
-	padding: 0 0 10px 0;
-}
-
-#rightPan p.more {
-	width: 502px;
-	height: 25px;
-	float: left;
-	background: url(../images/sky-color-bg.gif) 0 10px repeat-x;
-	padding: 0 0 20px 0;
-}
-
-#rightPan p.more a {
-	width: 92px;
-	height: 21px;
-	display: block;
-	background: url(../images/icon2.jpg) 0 0 no-repeat #fff;
-	color: #958201;
-	line-height: 21px;
-	text-transform: uppercase;
-	text-decoration: none;
-	margin: 0 0 0 328px;
-	padding: 4px 0 0 50px;
-}
-
-#rightPan p.more a:hover {
-	background: url(../images/icon2.jpg) 0 0 no-repeat #fff;
-	color: #645804;
-	text-decoration: none;
-}
-
-#rightPan h2 {
-	width: 96px;
-	height: 77px;
-	float: left;
-	display: block;
-	background: url(../images/icon3.jpg) 8px 38px no-repeat #B1DED5;
-	color: #fff;
-	font-size: 16px;
+	top: -1em;
+	margin: 0;
+	padding: 5px 10px;
+	font-size: 100%;
 	font-weight: bold;
-	line-height: 18px;
-	text-transform: uppercase;
-	padding: 46px 0 0 75px;
-	margin: 0 0 5px 0;
 }
 
-#rightPan ul.services {
-	width: 137px;
-	height: 114px;
-	float: left;
-	border: 1px solid #B1DED5;
-	background: #fff;
-	color: #5F7A77;
-	padding: 7px 0 0 25px;
+/* ----------------------------------------------------------------------------------------------------------
+2) Universal styles (display, float, margin, text-align...)
+---------------------------------------------------------------------------------------------------------- */
+.box {
+	min-height: 1px;
 }
 
-#rightPan ul.services li.captionone {
-	background: #fff;
-	color: #AC9601;
-	font-size: 12px;
-	font-weight: bold;
-	text-decoration: underline;
-}
-
-#rightPan ul.services li {
-	width: 137px;
-	height: 20px;
-}
-
-#rightPan ul.services li a {
-	width: 125px;
-	height: 20px;
+.box:after {
 	display: block;
-	background: url(../images/bullet2-normal.gif) 0 7px no-repeat #fff;
-	color: #5F7A77;
-	text-decoration: none;
-	line-height: 20px;
-	padding: 0 0 0 12px;
-}
-
-#rightPan ul.services li a:hover {
-	background: url(../images/bullet2-hover.gif) 0 7px no-repeat #fff;
-	color: #5F7A77;
-	text-decoration: none;
-}
-
-#rightPan ul.servicestwo {
-	width: 137px;
-	height: 114px;
-	float: left;
-	border-bottom: 1px solid #B1DED5;
-	border-top: 1px solid #B1DED5;
-	border-right: 1px solid #B1DED5;
-	background: #fff;
-	color: #5F7A77;
-	padding: 7px 0 0 25px;
-}
-
-#rightPan ul.servicestwo li.captiontwo {
-	background: #fff;
-	color: #AC9601;
-	font-size: 12px;
-	font-weight: bold;
-	text-decoration: underline;
-}
-
-#rightPan ul.servicestwo li {
-	width: 137px;
-	height: 20px;
-}
-
-#rightPan ul.servicestwo li a {
-	width: 125px;
-	height: 20px;
-	display: block;
-	background: url(../images/bullet2-normal.gif) 0 7px no-repeat #fff;
-	color: #5F7A77;
-	text-decoration: none;
-	line-height: 20px;
-	padding: 0 0 0 12px;
-}
-
-#rightPan ul.servicestwo li a:hover {
-	background: url(../images/bullet2-hover.gif) 0 7px no-repeat #fff;
-	color: #5F7A77;
-	text-decoration: none;
-}
-
-#rightPan h4 {
-	width: 96px;
-	height: 77px;
-	float: left;
-	display: block;
-	background: url(../images/icon4.jpg) 8px 38px no-repeat #DFD79C;
-	color: #fff;
-	font-size: 16px;
-	font-weight: bold;
-	line-height: 18px;
-	text-transform: uppercase;
-	padding: 46px 0 0 75px;
-	margin: 0 0 5px 0;
-}
-
-#rightPan ul.events {
-	width: 305px;
-	height: 114px;
-	float: left;
-	border: 1px solid #B1DED5;
-	background: #fff;
-	color: #5F7A77;
-	padding: 7px 0 0 25px;
-}
-
-#rightPan ul.events li.captionthree {
-	background: #fff;
-	color: #AC9601;
-	font-size: 12px;
-	font-weight: bold;
-	text-decoration: none;
-}
-
-#rightPan ul.events li {
-	width: 305px;
-	height: 20px;
-}
-
-#rightPan ul.events li a {
-	width: 293px;
-	height: 20px;
-	display: block;
-	background: url(../images/bullet2-normal.gif) 0 7px no-repeat #fff;
-	color: #959595;
-	text-decoration: underline;
-	line-height: 20px;
-	padding: 0 0 0 12px;
-}
-
-#rightPan ul.events li a:hover {
-	background: url(../images/bullet2-hover.gif) 0 7px no-repeat #fff;
-	color: #5F7A77;
-	text-decoration: underline;
-}
-
-/*----/Body Right Panel----*/ /*----/BODY PANEL----*/
-	/*----/MAIN PANEL----*/ /*----FOOTER PANEL----*/
-#footermainPan {
-	height: 103px;
-	background: url(../images/footerbg.gif) 0 0 repeat-x #D3F0F0;
-	color: #2F5958;
-	font: 13px/ 20px "Trebuchet MS", Arial, Helvetica, sans-serif;
-	position: relative;
-	margin: 0 auto;
+	visibility: hidden;
 	clear: both;
-	padding: 36px 0 0;
+	line-height: 0;
+	font-size: 0;
+	content: ".";
 }
 
-#footerPan {
-	width: 778px;
+.relative {
 	position: relative;
-	margin: 0 auto;
 }
 
-#footerPan ul {
-	width: 608px;
-	height: 20px;
+.clear {
+	clear: both;
+}
+
+.f-left {
+	float: left !important;
+}
+
+img.f-left {
+	float: left;
+	margin-right: 15px;
+}
+
+.f-right {
+	float: right !important;
+}
+
+img.f-right {
+	float: right;
+	margin-left: 15px;
+}
+
+.t-left {
+	text-align: left !important;
+}
+
+.t-center {
+	text-align: center !important;
+}
+
+.t-right {
+	text-align: right !important;
+}
+
+.t-justify {
+	text-align: justify !important;
+}
+
+.va-top {
+	vertical-align: top;
+}
+
+.va-middle {
+	vertical-align: middle;
+}
+
+.va-bottom {
+	vertical-align: bottom;
+}
+
+.nom {
+	margin: 0 !important;
+}
+
+.nomt {
+	margin-top: 0 !important;
+}
+
+.nomb {
+	margin-bottom: 0 !important;
+}
+
+.noscreen {
+	display: none;
+}
+
+.bigger {
+	font-size: 110%;
+}
+
+.smaller {
+	font-size: 85%;
+}
+
+/* ----------------------------------------------------------------------------------------------------------
+3) LAYOUT
+---------------------------------------------------------------------------------------------------------- */
+#main {
+	width: 1100px;
+	margin: 0 auto;
+	text-align: left;
+}
+
+#header {
 	position: relative;
-	margin: 0 auto;
+	padding-bottom: 15px;
 }
 
-#footerPan li {
+#logo {
+	margin: 0;
+	font-weight: normal;
+}
+
+#slogan {
+	margin: 0;
+}
+
+#search {
+	position: absolute;
+	bottom: 15px;
+	right: 0;
+	padding: 7px;
+}
+
+#search #search-input {
+	width: 175px;
+	padding: 3px;
+}
+
+#search #search-submit {
+	padding: 2px;
+	font: normal 100%/ 1.2 "arial", sans-serif;
+}
+
+#nav {
+	clear: both;
+	padding: 5px 0;
+	border-left: 0 !important;
+	border-right: 0 !important;
+}
+
+#nav ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	font: 100%/ 1.4 "arial", sans-serif;
+}
+
+#nav ul li {
+	display: inline;
+	margin: 0;
+	padding: 0;
+}
+
+#nav ul li a {
+	display: block;
+	float: left;
+	padding: 7px 15px;
+	border: 0;
+	background: url("{{ STATIC_URL }}/images/dot-03.gif") 100% 0 repeat-y;
+}
+
+#nav ul li#nav-active a {
+	border: 0;
+	font-weight: bold;
+}
+
+#content {
+	position: relative;
+	padding: 10px 0 30px 0;
+	overflow: hidden;
+}
+
+#footer {
+	clear: both;
+	font-size: 85%;
+	width: 100%;
+}
+
+/* ----------------------------------------------------------------------------------------------------------
+4) Page: Home
+---------------------------------------------------------------------------------------------------------- */
+#topstory {
+	float: left;
+	width: 760px;
+}
+
+#topstory-title {
+	padding: 15px;
+}
+
+#topstory-title h2 {
+	margin: 0;
+	margin-bottom: 2px;
+}
+
+#topstory-title p.date {
+	margin: 0;
+	font-size: 85%;
+}
+
+#topstory-perex {
+	display: block;
+	padding: 15px;
+	font-size: 110%;
+}
+
+#topstory-perex p {
+	margin: 0;
+}
+
+#aside {
+	float: right;
+	width: 310px;
+	margin-top: 0 auto;
+}
+
+#photos {
+	margin: 0;
+	font-size: 0;
+	line-height: 0;
+}
+
+#photos a {
+	border: 0;
+}
+
+#photos img {
+	display: block;
+	float: left;
+	width: 126px;
+	height: 126px;
+	margin-left: 12px;
+	border: 0;
+}
+
+.col30 {
+	float: left;
+	width: 310px;
+}
+
+.col30.margin {
+	margin: 0 15px;
+}
+
+.col30 h4 {
+	margin-bottom: 3px;
+}
+
+.col30 ul {
+	margin: 20px 0 !important;
+}
+
+.col30 p.date {
+	margin: 0;
+	font-size: 85%;
+}
+
+.col30 p.bb {
+	padding-bottom: 20px;
+	background: url("{{ STATIC_URL }}/images/dot-02.gif") 0 100% repeat-x;
+}
+
+.col30 p img.f-left {
+	margin-right: 10px;
+}
+
+.col30 p {
+	position: relative;
+}
+
+/* ----------------------------------------------------------------------------------------------------------
+Z) Others
+---------------------------------------------------------------------------------------------------------- */
+ul.ul-list {
+	margin: 15px 0;
+	padding: 0;
+	list-style: none;
+}
+
+ul.ul-list li {
+	margin: 0;
+	margin-bottom: 6px;
+	padding: 0;
+	padding-left: 20px;
+	background: url("{{ STATIC_URL }}/images/ico-list.gif") 0 4px no-repeat;
+}
+
+.hx-style01 {
+	clear: both;
+	background: url("{{ STATIC_URL }}/images/dot.gif") 0 50% repeat-x;
+	font-size: 85%;
+}
+
+.hx-style01 span {
+	margin-left: 15px;
+	padding: 0 5px;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
+a.ico-more {
+	padding: 5px 7px;
+	border: 0 !important;
+}
+
+.qitem {
+	width: 126px;
+	height: 126px;
+	border: 4px solid #222;
+	margin: 5px 5px 5px 0;
+	background: url('{{ STATIC_URL }}/images/bg.gif') no-repeat;
+	/* required to hide the image after resized */
+	overflow: hidden;
+	/* for child absolute position */
+	position: relative;
+	/* display div in line */
+	float: left;
+	cursor: hand;
+	cursor: pointer;
+}
+
+.qitem img {
+	border: 0;
+	/* allow javascript moves the img position*/
+	position: absolute;
+	z-index: 200;
+}
+
+.qitem .caption {
+	position: absolute;
+	z-index: 0;
+	color: #ccc;
+	display: block;
+}
+
+.qitem .caption h4 {
+	font-size: 12px;
+	padding: 10px 5px 0 8px;
+	margin: 0;
+	color: #369ead;
+}
+
+.qitem .caption p {
+	font-size: 10px;
+	padding: 3px 5px 0 8px;
+	margin: 0;
+}
+
+/* Setting for corners */
+.topLeft,.topRight,.bottomLeft,.bottomRight {
+	position: absolute;
+	background-repeat: no-repeat;
 	float: left;
 }
 
-#footerPan ul li a {
-	padding: 0 10px 0;
-	color: #2F5958;
-	background: #EBF8F7;
-	text-decoration: none;
-	font-size: 13px;
+.topLeft {
+	background-position: top left;
 }
 
-#footerPan ul li a:hover {
-	text-decoration: underline;
+.topRight {
+	background-position: top right;
 }
 
-#footerPan p.copyright {
-	width: 250px;
-	margin: 10px 0 0 92px;
+.bottomLeft {
+	background-position: bottom left;
 }
 
-#footerPan ul.templateworld {
-	width: 250px;
-	background: #D3F0F0;
-	color: #007163;
-	display: block;
-	font-size: 10px;
-	position: absolute;
-	top: 49px;
-	left: 92px;
+.bottomRight {
+	background-position: bottom right;
 }
 
-#footerPan ul.templateworld li {
-	height: 20px;
+.clear {
+	clear: both;
 }
-
-#footerPan ul.templateworld li a {
-	background: #D3F0F0;
-	display: block;
-	color: #007163;
-	text-decoration: none;
-	padding: 0px;
-	font-size: 10px;
-}
-
-#footerPan ul.templateworld li a:hover {
-	text-decoration: underline;
-}
-
-#footerPanhtml {
-	width: 70px;
-	height: 24px;
-	display: block;
-	position: absolute;
-	top: 35px;
-	left: 549px;
-}
-
-#footerPanhtml a {
-	width: 64px;
-	height: 24px;
-	display: block;
-	background: url(../images/html-normal.gif) 0 0 no-repeat #D3F0F0;
-	color: #fff;
-	font-size: 13px;
-	line-height: 23px;
-	font-weight: bold;
-	text-decoration: none;
-	text-transform: uppercase;
-	padding: 0 0 0 7px;
-}
-
-#footerPanhtml a:hover {
-	background: url(../images/html-hover.gif) 0 0 no-repeat #D3F0F0;
-	color: #fff;
-}
-
-#footerPancss {
-	width: 58px;
-	height: 24px;
-	display: block;
-	position: absolute;
-	top: 35px;
-	left: 624px;
-}
-
-#footerPancss a {
-	width: 49px;
-	height: 24px;
-	display: block;
-	background: url(../images/css-normal.gif) 0 0 no-repeat #D3F0F0;
-	color: #fff;
-	font-size: 13px;
-	line-height: 24px;
-	font-weight: bold;
-	text-decoration: none;
-	text-transform: uppercase;
-	padding: 0 0 0 10px;
-}
-
-#footerPancss a:hover {
-	background: url(../images/css-hover.gif) 0 0 no-repeat #D3F0F0;
-	color: #fff;
-	text-decoration: none;
-}
-/*----/FOOTER PANEL----*/
