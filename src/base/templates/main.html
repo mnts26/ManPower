@@ -136,12 +136,13 @@
 
         <!-- Search -->
         <div id="search">
-            <form action="" method="get">
+            <form action="/base/search" method="post">
+                {% csrf_token %}
                 <div>
-                    <span class="noscreen">Fulltext:</span>
-                    <input type="text" size="30" name="query" id="search-input" />
+                    <span class="noscreen">Хайх утга:</span>
+                    <input type="text" size="30" name="search_value" id="search-input" value="{{ search_value }}" />
                     <input type="submit" value="Search" id="search-submit" />
-            	</div>
+                </div>
             </form>
         </div> <!-- /search -->
     </div> <!-- /header -->

@@ -29,7 +29,17 @@ from cgi import escape
 def index(request):
     return render_to_response('index.html', locals(), 
                               context_instance=RequestContext(request))
+
+def search(request):
+    if request.method == 'POST' and request.POST['search_value']:
+        search_value = request.POST['search_value']
+        orders = JobOrder.objects.filter(name__icontains=search_value)
+        return render_to_response('search.html', locals(),
+                              context_instance=RequestContext(request))
+    else :
+        return HttpResponseRedirect('/')
     
+
 def login(request):
     if request.method=='POST':
         username = request.POST.get('username')

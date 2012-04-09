@@ -21,6 +21,7 @@ urlpatterns = patterns('',
     url(r'^jobdetail/(?P<order_id>.*)$', 'base.views.jobdetail'),
     url(r'^jobform/(?P<order_id>.*)$', 'base.views.jobform'),
     url(r'^addjobs$', 'base.views.addjobs'),
+    url(r'^search$', 'base.views.search'),
     
     url(r'^aboutus', 'base.views.aboutus'),
     url(r'^jobs', 'base.views.jobs'),

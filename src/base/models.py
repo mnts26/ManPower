@@ -27,7 +27,7 @@ class Partner(models.Model):
     category_id = models.ForeignKey('PartnerCategory', verbose_name=u'Ангилал',related_name='partner_set')
     started_date = models.DateField(u'Байгуулагдсан он', blank=True, null=True)
     user = models.ForeignKey(User, verbose_name=u'Хандах эрх', blank=True, null=True)
-    level = models.CharField(u'Зэрэглэл', choices=[('gold',u'Алт'),('silver',u'Мөнгө'),('bronze',u'Хүрэл'),('',u'Бусад')], max_length=10)
+    level = models.CharField(u'Зэрэглэл', choices=[('gold',u'Алт'),('silver',u'Мөнгө'),('bronze',u'Хүрэл'),('other',u'Бусад')], max_length=10)
     class Meta:
         verbose_name_plural = u"Харилцагчид"
         verbose_name = u"Харилцагч"
@@ -108,10 +108,12 @@ class JobOrder(models.Model):
     partner = models.ForeignKey('Partner', verbose_name=u'Байгууллага', related_name='joborder_set')
     level = models.ForeignKey('JobLevel', verbose_name=u'Зэрэглэл', related_name='joborder_set')
     name = models.CharField(u'Нэр', max_length=128)
+    funtional = models.TextField(u'Гүйцэтгэх үндсэн үүрэг')
     description = models.TextField(u'Тайлбар', blank=True, null=True)
     requirement = models.TextField(u'Тавигдах шаардлага')
-    deadline = models.DateField(u'Эцсийн огноо', help_text=u'Хэрэв эцсийн огноо оруулахгүй бол уг ажлын байр байнга нээлттэй байх болно.')
-    active = models.BooleanField(u'Идэвхитэй', help_text=u'Уг ажлын байр ажил горилогчид харагдах эсэх')
+    salary = models.CharField(u'Цалин', null=True, blank=True, default=u'Тохиролцоно', max_length=64)
+    deadline = models.DateField(u'Эцсийн огноо', help_text=u'Хэрэв эцсийн огноо оруулахгүй бол уг ажлын байр байнга нээлттэй байх болно.', null=True, blank=True)
+    active = models.BooleanField(u'Идэвхитэй', help_text=u'Уг ажлын байр ажил горилогчид харагдах эсэх',default=True)
     create_date = models.DateField(u'Үүсгэсэн огноо', auto_now_add=True)
     class Meta:
         verbose_name_plural = u"Ажлын байрууд"

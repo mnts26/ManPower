@@ -161,7 +161,7 @@ class extRichTextEditor2(forms.Textarea):
             'all': ('/extmedia/css/jquery.markitup.css',
                     '/extmedia/css/jquery.markitup.sets.css')
         }
-        js = (#'/extmedia/script/jquery-1.3.2.min.js',
+        js = ('/extmedia/script/jquery-1.3.2.min.js',
               '/extmedia/script/jquery.markitup.js',
               '/extmedia/script/jquery.markitup.sets.js')
     
