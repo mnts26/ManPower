@@ -17,10 +17,10 @@ from common.models import *
 from base.forms import *
 import smtplib
 
-
 # PDF RENDER
 import cStringIO as StringIO
-#import ho.pisa as pisa
+import ho.pisa as pisa
+
 from django.template.loader import get_template
 from django.template import Context
 from django.http import HttpResponse
@@ -156,31 +156,31 @@ def addjobs(request):
            return HttpResponseRedirect('/base/addjobs')
     else :
         form = JobOrderForm()
-    return render_to_response('new/addjobs.html', locals(),
+    return render_to_response('addjobs.html', locals(),
                               context_instance=RequestContext(request))
 def contactable (request):
     print 'ASDASDASDASDS'
     
 def aboutus(request):
     print 'HALSDM<L:ASMD KA:LSM DKLASM '
-    return render_to_response('new/aboutus.html', locals(),
+    return render_to_response('aboutus.html', locals(),
                               context_instance=RequestContext(request))
 
 def lessons(request):
-    return render_to_response('new/lessons.html', locals(),
+    return render_to_response('lessons.html', locals(),
                               context_instance=RequestContext(request))
 def jobs(request):
-    return render_to_response('new/jobs.html', locals(),
+    return render_to_response('jobs.html', locals(),
                               context_instance=RequestContext(request))
 def events(request):
-    return render_to_response('new/events.html', locals(),
+    return render_to_response('events.html', locals(),
                               context_instance=RequestContext(request))
 
 def partners (request):
     partners = Partner.objects.all()
     for partner in partners: 
         print "TEST" , partner.logo 
-    return render_to_response('new/partners.html', locals(),
+    return render_to_response('partners.html', locals(),
                               context_instance=RequestContext(request))
     
 def sendmail (request):
@@ -209,14 +209,13 @@ def pdfview(request):
                 'mylist': results,
             }
         )
-
 def render_to_pdf(template_src, context_dict):
     template = get_template(template_src)
     context = Context(context_dict)
     html  = template.render(context)
     result = StringIO.StringIO()
-#    pdf = pisa.pisaDocument(StringIO.StringIO(html.encode("ISO-8859-1")), result)
-#    if not pdf.err:
-#        return HttpResponse(result.getvalue(), mimetype='application/pdf')
+    pdf = pisa.pisaDocument(StringIO.StringIO(html.encode("ISO-8859-1")), result)
+    if not pdf.err:
+        return HttpResponse(result.getvalue(), mimetype='application/pdf')
     return HttpResponse('We had some errors<pre>%s</pre>' % escape(html))
         
