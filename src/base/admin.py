@@ -10,10 +10,11 @@ admin.site.register(PartnerCategory, PartnerCategoryAdmin)
 
 class PartnerAdmin(admin.ModelAdmin):
     fieldsets = ((u'Ерөнхий', {'fields':('name','category_id','poster','logo','website')}),
-                 (u'Нэмэлт', {'fields':('description','started_date',)}),
+                 (u'Нэмэлт', {'fields':('description','started_date','level')}),
                  (u'Портал хандалт', {'fields':('user',)}))
-    list_display = ('admin_image','name','category_id','user')
+    list_display = ('level','admin_image','name','category_id','user')
     search_fields = ('name','category_id','user')
+    filter_fields = ('level',)
 admin.site.register(Partner, PartnerAdmin)
 
 class JobCategoryAdmin(admin.ModelAdmin):

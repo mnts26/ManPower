@@ -27,6 +27,7 @@ class Partner(models.Model):
     category_id = models.ForeignKey('PartnerCategory', verbose_name=u'Ангилал',related_name='partner_set')
     started_date = models.DateField(u'Байгуулагдсан он', blank=True, null=True)
     user = models.ForeignKey(User, verbose_name=u'Хандах эрх', blank=True, null=True)
+    level = models.CharField(u'Зэрэглэл', choices=[('gold',u'Алт'),('silver',u'Мөнгө'),('bronze',u'Хүрэл'),('',u'Бусад')], max_length=10)
     class Meta:
         verbose_name_plural = u"Харилцагчид"
         verbose_name = u"Харилцагч"
