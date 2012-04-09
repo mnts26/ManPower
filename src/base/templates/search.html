@@ -22,7 +22,7 @@ p.grey-text {
 {% block content %}
 
 <h2 class="title-01">Хайлтанд тохирох ажлын байр</h2>
-    <div class="in" style="width:60%">
+    <div class="topstory" style="width:65%;float:left">
     <!-- Topstory -->
     
     <div class="box">
@@ -36,7 +36,7 @@ p.grey-text {
             {% for order in orders %}
                 <div class="joblist">
 	                <a href="/base/jobdetail/{{ order.id }}">{{ order.name }}</a> - <span class="small-text">{{ order.partner.name }}</span>
-	                <p class="grey-text">{{ order.description }}</p>
+	                <p class="grey-text">{{ order.functional }}</p>
 	            </div>
             {% endfor %}
         

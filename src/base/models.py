@@ -108,7 +108,7 @@ class JobOrder(models.Model):
     partner = models.ForeignKey('Partner', verbose_name=u'Байгууллага', related_name='joborder_set')
     level = models.ForeignKey('JobLevel', verbose_name=u'Зэрэглэл', related_name='joborder_set')
     name = models.CharField(u'Нэр', max_length=128)
-    funtional = models.TextField(u'Гүйцэтгэх үндсэн үүрэг')
+    functional = models.TextField(u'Гүйцэтгэх үндсэн үүрэг')
     description = models.TextField(u'Тайлбар', blank=True, null=True)
     requirement = models.TextField(u'Тавигдах шаардлага')
     salary = models.CharField(u'Цалин', null=True, blank=True, default=u'Тохиролцоно', max_length=64)

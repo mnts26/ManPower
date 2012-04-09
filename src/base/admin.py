@@ -59,7 +59,7 @@ class JobOrderAdmin(admin.ModelAdmin):
         #models.ForeignKey: {'widget': extModelSelect}
     }
     
-    fieldsets = ((u'Ерөнхий мэдээлэл', {'fields':('category','partner','level','name','funtional')}),
+    fieldsets = ((u'Ерөнхий мэдээлэл', {'fields':('category','partner','level','name','functional')}),
                  (u'Бусад мэдээлэл', {'fields':('description','requirement','salary','deadline','active')}))
     list_display = ('category','name','partner','level','deadline','active')
     search_fields = ('name','category','partner')
