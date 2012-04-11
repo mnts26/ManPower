@@ -5,7 +5,7 @@ from django.conf.urls.defaults import patterns, include, url
 from django.contrib import admin
 import os
 admin.autodiscover()
-
+import settings
 urlpatterns = patterns('',
     # Examples:
     # url(r'^$', 'manpower.views.home', name='home'),
@@ -17,6 +17,9 @@ urlpatterns = patterns('',
     # Uncomment the next line to enable the admin:
     
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^accounts/profile/', include(admin.site.urls)),
+    
+    
     url(r'^$', include('base.urls')),
     url(r'^base/', include('base.urls')),
     url(r'^common/', include('common.urls')),
@@ -31,4 +34,8 @@ urlpatterns = patterns('',
     #url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {
     #        'document_root': settings.MEDIA_ROOT,
     #    }),
+    (r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
+    (r'^admin/(?P<path>.*)$', 'django.views.static.serve', {'document_root': os.path.join(os.path.dirname(__file__), 'base/static/admin'), 'show_indexes': False}),
+    #(r'^adminmedia/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.ADMIN_MEDIA_ROOT}),
+
 )
